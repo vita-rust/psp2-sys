@@ -1,0 +1,10 @@
+[package]
+name = "bare_metal_rust"
+version = "0.1.0"
+authors = ["Martin Larralde <martin.larralde@ens-cachan.fr>"]
+
+[lib]
+crate-type = ["staticlib"]
+
+[dependencies]
+psp2-sys = { path = "../..", features = ["kernel"] }
