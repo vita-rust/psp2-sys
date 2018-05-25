@@ -54,7 +54,7 @@ script = [
 dependencies = ["velf"]
 script = [
   """
-  vita-make-fself \
+  vita-make-fself -s \
       "${CARGO_OUT_DIR}/${CARGO_MAKE_CRATE_NAME}.velf" \
       "${CARGO_OUT_DIR}/eboot.bin"
   """
