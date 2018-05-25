@@ -8,3 +8,7 @@ crate-type = ["staticlib"]
 
 [dependencies]
 psp2-sys = { path = "../..", features = ["kernel"] }
+
+[profile.release]
+lto = true
+panic = 'abort'
