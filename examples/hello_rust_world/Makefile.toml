@@ -9,6 +9,9 @@ LINKER = "arm-vita-eabi-gcc"
 LINKER_FLAGS = "-Wl,-q"
 LINKER_SPECS = "${CARGO_OUT_DIR}/specs"
 
+[tasks.default]
+alias = "vpk"
+
 [tasks.patch-specs]
 description = "Remove default `libc` linkage from the linker specs"
 script = [
