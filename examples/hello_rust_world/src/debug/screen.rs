@@ -1,25 +1,28 @@
+use core::fmt::Result;
+use core::fmt::Write;
 use core::mem::size_of;
+use core::slice::from_raw_parts_mut;
 
 use psp2::display::sceDisplaySetFrameBuf;
 use psp2::display::SceDisplayFrameBuf;
 use psp2::display::SceDisplaySetBufSync::SCE_DISPLAY_SETBUF_NEXTFRAME;
-use psp2::kernel::threadmgr::sceKernelCreateMutex;
-use psp2::kernel::threadmgr::sceKernelLockMutex;
-use psp2::kernel::threadmgr::sceKernelUnlockMutex;
 use psp2::kernel::sysmem::sceKernelAllocMemBlock;
 use psp2::kernel::sysmem::sceKernelGetMemBlockBase;
 use psp2::kernel::sysmem::SceKernelMemBlockType::SCE_KERNEL_MEMBLOCK_TYPE_USER_CDRAM_RW;
+use psp2::kernel::threadmgr::sceKernelCreateMutex;
+use psp2::kernel::threadmgr::sceKernelLockMutex;
+use psp2::kernel::threadmgr::sceKernelUnlockMutex;
 use psp2::types::SceUID;
 use psp2::void;
 
 use super::font::DEBUG_FONT;
 
-const SCREEN_WIDTH: u32 = 960;
-const SCREEN_HEIGHT: u32 = 544;
-const SCREEN_FB_WIDTH: i32 = 960;
-const SCREEN_FB_SIZE: i32 = 2 * 1024 * 1024;
-const SCREEN_TAB_SIZE: i32 = 8;
-const SCREEN_TAB_W: i32 = DEBUG_FONT.size_w as i32 * SCREEN_TAB_SIZE;
+const SCREEN_WIDTH: usize = 960;
+const SCREEN_HEIGHT: usize = 544;
+const SCREEN_FB_WIDTH: usize = 960;
+const SCREEN_FB_SIZE: usize = 2 * 1024 * 1024;
+const SCREEN_TAB_SIZE: usize = 8;
+const SCREEN_TAB_W: usize = DEBUG_FONT.size_w * SCREEN_TAB_SIZE;
 
 const DEFAULT_FG: u32 = 0xFFFFFFFF;
 const DEFAULT_BG: u32 = 0xFF000000;
@@ -30,7 +33,7 @@ const DEFAULT_BG: u32 = 0xFF000000;
 // }
 // #define FROM_GREY(c     ) ((((c)*9)    <<16)  |  (((c)*9)       <<8)  | ((c)*9))
 // #define FROM_3BIT(c,dark) (((!!((c)&4))<<23)  | ((!!((c)&2))<<15)     | ((!!((c)&1))<<7) | (dark ? 0 : 0x7F7F7F))
-// #define FROM_6BIT(c     ) ((((c)%6)*(51<<16)) | ((((c)/6)%6)*(51<<8)) | ((((c)/36)%6)*51))
+// #define FROM_6BIT(c     ) ((((c)%6)*(51<text<16)) | ((((c)/6)%6)*(51<<8)) | ((((c)/36)%6)*51))
 // #define FROM_FULL(r,g,b ) ((r<<16) | (g<<8) | (b))
 // #define CLEARSCRN(
 
@@ -58,49 +61,65 @@ const DEFAULT_BG: u32 = 0xFF000000;
 //     }
 // }
 
-pub struct DebugScreen {
-    base: *mut void,
-    mutex: i32,
-    coord_x: i32,
-    coord_y: i32,
-    saved_x: i32,
-    saved_y: i32,
+pub struct DebugScreen<'a> {
+    base: &'a mut [u32],
+    mutex: SceUID,
+    coord_x: usize,
+    coord_y: usize,
+    saved_x: usize,
+    saved_y: usize,
     color_fg: u32,
     color_bg: u32,
 }
 
-impl DebugScreen {
-    pub unsafe fn new() -> Self {
-        let mut base: *mut void = ::core::ptr::null_mut();
-        let mutex: SceUID =
-            sceKernelCreateMutex(b"log_mutex\0".as_ptr(), 0, 0, ::core::ptr::null_mut());
-        let displayblock: SceUID = sceKernelAllocMemBlock(
-            b"display\0".as_ptr(),
-            SCE_KERNEL_MEMBLOCK_TYPE_USER_CDRAM_RW,
-            SCREEN_FB_SIZE,
-            ::core::ptr::null_mut(),
-        );
-        sceKernelGetMemBlockBase(displayblock, &mut base);
+impl<'a> Write for DebugScreen<'a> {
+    fn write_str(&mut self, s: &str) -> Result {
+        unsafe {
+            self.puts(s.as_bytes());
+        }
+        Ok(())
+    }
+}
 
-        let frame = SceDisplayFrameBuf {
-            size: size_of::<SceDisplayFrameBuf>() as u32,
-            base,
-            pitch: SCREEN_FB_WIDTH as u32,
-            pixelformat: 0,
-            width: SCREEN_WIDTH,
-            height: SCREEN_HEIGHT,
-        };
-        sceDisplaySetFrameBuf(&frame, SCE_DISPLAY_SETBUF_NEXTFRAME);
+impl<'a> DebugScreen<'a> {
+    pub fn new() -> Self {
+        unsafe {
+            let mut base: *mut void = ::core::ptr::null_mut();
 
-        Self {
-            base,
-            mutex,
-            coord_x: 0,
-            coord_y: 0,
-            saved_x: 0,
-            saved_y: 0,
-            color_fg: DEFAULT_FG,
-            color_bg: DEFAULT_BG,
+            // Create the global screen mutex
+            let mutex: SceUID =
+                sceKernelCreateMutex(b"_debug_mutex\0".as_ptr(), 0, 0, ::core::ptr::null_mut());
+
+            // Allocate memory to use as display buffer
+            let displayblock: SceUID = sceKernelAllocMemBlock(
+                b"display\0".as_ptr(),
+                SCE_KERNEL_MEMBLOCK_TYPE_USER_CDRAM_RW,
+                SCREEN_FB_SIZE as i32,
+                ::core::ptr::null_mut(),
+            );
+            sceKernelGetMemBlockBase(displayblock, &mut base);
+
+            // Set the display frame using the allowated memory
+            let frame = SceDisplayFrameBuf {
+                size: size_of::<SceDisplayFrameBuf>() as u32,
+                base,
+                pitch: SCREEN_FB_WIDTH as u32,
+                pixelformat: 0,
+                width: SCREEN_WIDTH as u32,
+                height: SCREEN_HEIGHT as u32,
+            };
+            sceDisplaySetFrameBuf(&frame, SCE_DISPLAY_SETBUF_NEXTFRAME);
+
+            Self {
+                base: from_raw_parts_mut(base as *mut u32, SCREEN_FB_SIZE as usize / 4),
+                mutex,
+                coord_x: 0,
+                coord_y: 0,
+                saved_x: 0,
+                saved_y: 0,
+                color_fg: DEFAULT_FG,
+                color_bg: DEFAULT_BG,
+            }
         }
     }
 
@@ -238,36 +257,31 @@ impl DebugScreen {
     //     0
     // }
 
-    pub unsafe fn clear(&self, from_h: usize, to_h: usize, from_w: usize, to_w: usize) {
+    unsafe fn clear(&mut self, from_h: usize, to_h: usize, from_w: usize, to_w: usize) {
         for h in from_h..to_h {
             for w in from_w..to_w {
-                let pixel = (self.base as *mut u32).add(h * (SCREEN_FB_WIDTH as usize) + w);
-                *pixel = self.color_bg;
+                self.base[h * SCREEN_FB_WIDTH + w] = self.color_bg;
             }
         }
     }
 
-    pub unsafe fn puts(&mut self, text: &[u8]) -> i32 {
-        let mut c = 0;
-        let bytes_per_glyph = (DEBUG_FONT.width as usize * DEBUG_FONT.height as usize) / 8;
+    unsafe fn puts(&mut self, text: &[u8]) {
+        let bytes_per_glyph = DEBUG_FONT.width * DEBUG_FONT.height / 8;
         sceKernelLockMutex(self.mutex, 1, ::core::ptr::null_mut());
 
         let mut chr: u8;
-        while text[c] != 0 {
-            chr = text[c];
-            c += 1;
-
+        for &chr in text.iter() {
             if chr == b'\t' {
                 self.coord_x += SCREEN_TAB_W - (self.coord_x % SCREEN_TAB_W);
                 continue;
             }
 
-            if (self.coord_x + DEBUG_FONT.width > SCREEN_WIDTH as i32) {
+            if (self.coord_x + DEBUG_FONT.width > SCREEN_WIDTH) {
                 self.coord_y += DEBUG_FONT.size_h;
                 self.coord_x = 0;
             }
 
-            if (self.coord_y + DEBUG_FONT.height > SCREEN_HEIGHT as i32) {
+            if (self.coord_y + DEBUG_FONT.height > SCREEN_HEIGHT) {
                 self.coord_x = 0;
                 self.coord_y = 0;
             }
@@ -290,23 +304,19 @@ impl DebugScreen {
               //     continue;
               // }
 
-            let mut pixel: *mut u32;
-            let mut vram = (self.base as *mut u32)
-                .offset(self.coord_x as isize + self.coord_y as isize * SCREEN_FB_WIDTH as isize);
+            let mut vram = &mut self.base[self.coord_x + self.coord_y * SCREEN_FB_WIDTH..];
             let mut font =
                 &DEBUG_FONT.glyphs[(chr - DEBUG_FONT.first) as usize * bytes_per_glyph..];
             let mut mask = 1 << 7;
 
             for row in 0..DEBUG_FONT.height {
-                pixel = vram;
                 for col in 0..DEBUG_FONT.width {
                     if mask == 0 {
                         font = &font[1..];
                         mask = 1 << 7;
                     }
 
-                    pixel = pixel.offset(1);
-                    *pixel = if (font[0] & mask == 0) {
+                    vram[row * SCREEN_FB_WIDTH + col] = if (font[0] & mask == 0) {
                         self.color_bg
                     } else {
                         self.color_fg
@@ -315,28 +325,20 @@ impl DebugScreen {
                     mask >>= 1;
                 }
 
-                pixel = vram.offset(DEBUG_FONT.width as isize);
                 for col in DEBUG_FONT.width..DEBUG_FONT.size_w {
-                    pixel = pixel.offset(1);
-                    *pixel = self.color_bg;
+                    vram[row * SCREEN_FB_WIDTH + col] = self.color_bg
                 }
-
-                vram = vram.offset(SCREEN_FB_WIDTH as isize);
             }
 
             for row in DEBUG_FONT.height..DEBUG_FONT.size_h {
-                pixel = vram;
                 for col in 0..DEBUG_FONT.size_w {
-                    pixel = pixel.offset(1);
-                    *pixel = self.color_bg;
+                    vram[row * SCREEN_FB_WIDTH + col] = self.color_bg
                 }
-                vram = vram.offset(SCREEN_FB_WIDTH as isize);
             }
 
             self.coord_x += DEBUG_FONT.size_w;
         }
 
         sceKernelUnlockMutex(self.mutex, 1);
-        c as i32
     }
 }

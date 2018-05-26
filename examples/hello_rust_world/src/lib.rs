@@ -6,6 +6,8 @@ extern crate psp2_sys as psp2;
 
 mod debug;
 
+use core::fmt::Write;
+
 #[lang = "eh_personality"]
 #[no_mangle]
 pub extern "C" fn eh_personality() {}
@@ -19,8 +21,10 @@ pub extern "C" fn panic_fmt() -> ! {
 #[no_mangle]
 pub unsafe fn main(_argc: isize, _argv: *const *const u8) -> isize {
     let mut screen = debug::screen::DebugScreen::new();
-    screen.puts(b"This bare-metal is starting to rust!\n\0");
-    psp2::kernel::threadmgr::sceKernelDelayThread(3 * 1000000); // Wait for 3 seconds
+    write!(screen, "This bare-metal is starting to rust!\n");
+    psp2::kernel::threadmgr::sceKernelDelayThread(1 * 1000000); // Wait for 1 second
+    write!(screen, "See ? I told you !\n");
+    psp2::kernel::threadmgr::sceKernelDelayThread(3 * 1000000);
     psp2::kernel::processmgr::sceKernelExitProcess(0);
     return 0;
 }

@@ -1,11 +1,11 @@
 pub struct PsvDebugScreenFont {
     pub glyphs: &'static [u8],
-    pub width: i32,
-    pub height: i32,
+    pub width: usize,
+    pub height: usize,
     pub first: u8,
     pub last: u8,
-    pub size_w: i32,
-    pub size_h: i32,
+    pub size_w: usize,
+    pub size_h: usize,
 }
 
 pub const DEBUG_FONT: PsvDebugScreenFont = PsvDebugScreenFont {
