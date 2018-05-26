@@ -74,9 +74,7 @@ pub struct DebugScreen<'a> {
 
 impl<'a> Write for DebugScreen<'a> {
     fn write_str(&mut self, s: &str) -> Result {
-        unsafe {
-            self.puts(s.as_bytes());
-        }
+        self.puts(s.as_bytes());
         Ok(())
     }
 }
@@ -265,11 +263,22 @@ impl<'a> DebugScreen<'a> {
         }
     }
 
-    unsafe fn puts(&mut self, text: &[u8]) {
-        let bytes_per_glyph = DEBUG_FONT.width * DEBUG_FONT.height / 8;
-        sceKernelLockMutex(self.mutex, 1, ::core::ptr::null_mut());
+    fn lock(&mut self) {
+        unsafe {
+            sceKernelLockMutex(self.mutex, 1, ::core::ptr::null_mut());
+        }
+    }
 
-        let mut chr: u8;
+    fn unlock(&mut self) {
+        unsafe {
+            sceKernelUnlockMutex(self.mutex, 1);
+        }
+    }
+
+    fn puts(&mut self, text: &[u8]) {
+        let bytes_per_glyph = DEBUG_FONT.width * DEBUG_FONT.height / 8;
+        self.lock();
+
         for &chr in text.iter() {
             if chr == b'\t' {
                 self.coord_x += SCREEN_TAB_W - (self.coord_x % SCREEN_TAB_W);
@@ -339,6 +348,6 @@ impl<'a> DebugScreen<'a> {
             self.coord_x += DEBUG_FONT.size_w;
         }
 
-        sceKernelUnlockMutex(self.mutex, 1);
+        self.unlock();
     }
 }
