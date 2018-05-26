@@ -32,7 +32,7 @@ script = [
     ${LINKER} ${LINKER_FLAGS} \
         "-specs=${LINKER_SPECS}" \
         -L"${CARGO_OUT_DIR}" \
-        -l${CARGO_MAKE_CRATE_NAME} \
+        -l${CARGO_MAKE_CRATE_FS_NAME} \
         -o${CARGO_OUT_DIR}/${CARGO_MAKE_CRATE_NAME}.elf
     """
 ]
