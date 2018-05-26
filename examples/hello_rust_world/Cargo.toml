@@ -7,7 +7,7 @@ authors = ["Martin Larralde <martin.larralde@ens-cachan.fr>"]
 crate-type = ["staticlib"]
 
 [dependencies]
-psp2-sys = { path = "../..", features = ["kernel"] }
+psp2-sys = { path = "../.." }
 
 [profile.release]
 lto = true
