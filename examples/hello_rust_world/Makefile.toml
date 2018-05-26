@@ -1,6 +1,6 @@
 [env]
 # Project information
-TITLE = "Rust Bare Metal"
+TITLE = "Rust Hello World"
 TITLEID = "RUST00002"
 # Compilation specific
 CARGO_TARGET_DIR = "target"
