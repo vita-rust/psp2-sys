@@ -10,6 +10,7 @@ pub mod kernel;
 pub mod system_param;
 pub mod types;
 
-extern "C" {
-    pub type void;
-}
+/// A placeholder enum for functions with `*void` arguments.
+///
+/// Only manipulate behind pointers !
+pub enum void {}
