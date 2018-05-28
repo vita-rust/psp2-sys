@@ -1,3 +1,5 @@
 /target/
 **/*.rs.bk
 Cargo.lock
+common.toml
+armv7-vita-eabihf

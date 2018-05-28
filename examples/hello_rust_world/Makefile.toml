@@ -1,86 +1,15 @@
+extend = "common.toml"
+
 [env]
 # Project information
 TITLE = "Rust Hello World"
-TITLEID = "RUST00002"
-# Compilation specific
-CARGO_TARGET_DIR = "target"
-CARGO_OUT_DIR = "${CARGO_TARGET_DIR}/armv7-vita-eabihf/release"
-LINKER = "arm-vita-eabi-gcc"
-LINKER_FLAGS = "-Wl,-q"
-LINKER_SPECS = "${CARGO_OUT_DIR}/specs"
+TITLEID = "RUST00001"
 
-[tasks.default]
-alias = "vpk"
-
-[tasks.patch-specs]
-description = "Remove default `libc` linkage from the linker specs"
-script = [
-  '${LINKER} -dumpspecs > "${LINKER_SPECS}"',
-  'sed -i "s/%{!shared:%{g*:-lg} %{!p:%{!pg:-lc}}%{p:-lc_p}%{pg:-lc_p}}//g" "${LINKER_SPECS}"',
-  'sed -i "s/crt0%O%s//g" "${LINKER_SPECS}"'
-]
-
-[tasks.build]
-install_crate = "xargo"
-command = "xargo"
-args = ["build", "--target=armv7-vita-eabihf", "--release", "-vv"]
-
-[tasks.elf]
-dependencies = ["build", "patch-specs"]
-script = [
+[config]
+load_script = [
     """
-    ${LINKER} ${LINKER_FLAGS} \
-        "-specs=${LINKER_SPECS}" \
-        -L"${CARGO_OUT_DIR}" \
-        -l${CARGO_MAKE_CRATE_FS_NAME} \
-        -o${CARGO_OUT_DIR}/${CARGO_MAKE_CRATE_NAME}.elf
+    if [ ! -f common.toml ]; then
+        curl -SsL https://github.com/vita-rust/common/raw/master/common.toml > common.toml
+    fi
     """
-]
-
-[tasks.velf]
-dependencies = ["elf"]
-script = [
-  """
-  arm-vita-eabi-strip -g "${CARGO_OUT_DIR}/${CARGO_MAKE_CRATE_NAME}.elf"
-  """,
-  """
-  vita-elf-create \
-      "${CARGO_OUT_DIR}/${CARGO_MAKE_CRATE_NAME}.elf" \
-      "${CARGO_OUT_DIR}/${CARGO_MAKE_CRATE_NAME}.velf"
-  """
-]
-
-[tasks.eboot-bin]
-dependencies = ["velf"]
-script = [
-  """
-  vita-make-fself -s \
-      "${CARGO_OUT_DIR}/${CARGO_MAKE_CRATE_NAME}.velf" \
-      "${CARGO_OUT_DIR}/eboot.bin"
-  """
-]
-
-[tasks.param-sfo]
-script = [
-    """
-    vita-mksfoex \
-        -s TITLE_ID="${TITLEID}" \
-        "${TITLE}" \
-        "${CARGO_OUT_DIR}/param.sfo"
-    """
-]
-
-[tasks.vpk]
-dependencies = ["eboot-bin", "param-sfo"]
-script = [
-  """
-  vita-pack-vpk \
-          -s "${CARGO_OUT_DIR}/param.sfo" \
-          -b "${CARGO_OUT_DIR}/eboot.bin" \
-          --add static/sce_sys/icon0.png=sce_sys/icon0.png \
-          --add static/sce_sys/livearea/contents/bg.png=sce_sys/livearea/contents/bg.png \
-          --add static/sce_sys/livearea/contents/startup.png=sce_sys/livearea/contents/startup.png \
-          --add static/sce_sys/livearea/contents/template.xml=sce_sys/livearea/contents/template.xml \
-          "${CARGO_OUT_DIR}/${CARGO_MAKE_CRATE_NAME}.vpk"
-  """
 ]
