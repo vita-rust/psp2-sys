@@ -1,5 +1,5 @@
-use std::path::PathBuf;
 use std::env;
+use std::path::PathBuf;
 
 fn main() {
     let sdk = PathBuf::from(env::var("VITASDK").expect("$VITASDK is not set !"));

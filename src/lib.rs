@@ -1,6 +1,8 @@
 #![feature(untagged_unions)]
 #![feature(extern_types)]
-#![allow(non_camel_case_types, non_snake_case, dead_code)]
+#![allow(non_camel_case_types)]
+#![allow(non_snake_case)]
+#![allow(dead_code)]
 #![no_std]
 
 pub mod dialog;
