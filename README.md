@@ -1,6 +1,6 @@
 # `psp2-sys`
 
-*Unsafe FFI bindings to the [`psp2` headers](https://github.com/vitasdk/vita-headers/)*.
+*Unsafe Rust FFI bindings to the [`psp2` headers](https://github.com/vitasdk/vita-headers/)*.
 
 [![TravisCI](https://img.shields.io/travis/vita-rust/psp2-sys/master.svg?maxAge=600&style=flat-square)](https://travis-ci.org/vita-rust/psp2-sys/builds)
 [![Source](https://img.shields.io/badge/source-GitHub-303030.svg?maxAge=86400&style=flat-square)](https://github.com/vita-rust/psp2-sys)

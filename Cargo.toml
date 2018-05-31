@@ -1,7 +1,21 @@
 [package]
-name = "psp2-sys"
-version = "0.1.0"
-authors = ["Martin Larralde <martin.larralde@ens-cachan.fr>"]
+name        = "psp2-sys"
+version     = "0.1.0"
+authors     = ["Martin Larralde <martin.larralde@ens-cachan.fr>"]
+license     = "MIT"
+description = "Unsafe Rust FFI bindings to the psp2 headers"
+repository  = "https://github.com/vita-rust/psp2-sys"
+readme      = "README.md"
+keywords    = ["ps-vita"]
+categories  = ["no-std", "external-ffi-bindings", "os", "hardware-support"]
+
+[lib]
+name        = "psp2_sys"
+path        = "src/lib.rs"
+
+[badges]
+travis-ci   = { repository = "vita-rust/psp2-sys" }
+maintenance = { status = "actively-developed" }
 
 [features]
 default = []
