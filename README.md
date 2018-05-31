@@ -21,6 +21,9 @@ to see how to setup a project using the raw bindings, or use the
 [`vita`](https://github.com/vita-rust/vita) crate for a safe API closer to the
 Rust [`std`](http://doc.rust-lang.org/nightly/std/) library.
 
+The submodules in this crate follow the file hierarchy of the `psp2` headers:
+so the FFI in the `psp2_sys::kernel::threadmgr` as the ones you would get in C
+after including `psp2/kernel/threadmgr.h`.
 
 ## Credits
 
