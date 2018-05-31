@@ -7,7 +7,7 @@
 [![Changelog](https://img.shields.io/badge/keep%20a-changelog-8A0707.svg?maxAge=86400&style=flat-square)](http://keepachangelog.com/)
 [![Crate](https://img.shields.io/crates/v/vitalloc.svg?maxAge=86400&style=flat-square)](https://crates.io/crates/psp2-sys)
 [![Documentation](https://img.shields.io/badge/docs-latest-4d76ae.svg?maxAge=86400&style=flat-square)](https://docs.rs/psp2-sys)
-<!-- [![CargoMake](https://img.shields.io/badge/built%20with-cargo--make-yellow.svg?maxAge=86400&style=flat-square)](https://sagiegurari.github.io/cargo-make) -->
+[![CargoMake](https://img.shields.io/badge/built%20with-cargo--make-yellow.svg?maxAge=86400&style=flat-square)](https://sagiegurari.github.io/cargo-make)
 <!-- [![Codecov](https://img.shields.io/codecov/c/github/vita-rust/vitalloc.svg?maxAge=600&style=flat-square)](https://codecov.io/github/vita-rust/vitalloc) -->
 
 

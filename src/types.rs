@@ -183,7 +183,7 @@ pub union SceUnion32 {
     uc: [u8; 4],
     c: [i8; 4],
     f: f32,
-    p: *mut ::void
+    p: *mut ::void,
 }
 
 #[repr(C)]
@@ -227,7 +227,7 @@ pub struct SceDateTime {
     hour: u16,
     minute: u16,
     second: u16,
-    microsecond: u32
+    microsecond: u32,
 }
 
 pub type SceMode = i32;

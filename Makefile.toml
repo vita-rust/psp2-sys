@@ -1,0 +1,23 @@
+extend = "common.toml"
+
+[config]
+load_script = [
+  """
+  if [ ! -f common.toml ]; then
+    curl -SsL https://github.com/vita-rust/common/raw/master/common.toml > common.toml;
+  fi
+  """
+]
+
+[tasks.default]
+alias = "build"
+
+### TESTING ####################################################################
+
+[tasks.build-native]
+command = "cargo"
+args = ["build"]
+
+[tasks.test-native]
+command = "cargo"
+args = ["test"]

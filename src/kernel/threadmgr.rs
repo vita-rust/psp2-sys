@@ -1,7 +1,7 @@
-use ::types::SceUInt;
-use ::types::SceUInt64;
-use ::types::SceUID;
-use ::types::SceSize;
+use types::SceUInt;
+use types::SceUInt64;
+use types::SceUID;
+use types::SceSize;
 
 type SceKernelSysClock = SceUInt64;
 
@@ -13,21 +13,26 @@ pub struct SceKernelMutexOptParam {
 
 #[repr(C)]
 pub struct SceKernelMutexInfo {
-	pub size: SceSize,
-	pub mutexId: SceUID,
-	pub name: [u8; 32],
-	pub attr: SceUInt,
-	pub initCount: i32,
-	pub currentCount: i32,
-	pub currentOwnerId: SceUID,
-	pub numWaitThreads: i32,
+    pub size: SceSize,
+    pub mutexId: SceUID,
+    pub name: [u8; 32],
+    pub attr: SceUInt,
+    pub initCount: i32,
+    pub currentCount: i32,
+    pub currentOwnerId: SceUID,
+    pub numWaitThreads: i32,
 }
 
 #[link(kind = "static", name = "SceLibKernel_stub")]
 extern "C" {
 
     // Mutexes
-    pub fn sceKernelCreateMutex(name: *const u8, attr: SceUInt, initCount: i32, option: *mut SceKernelMutexOptParam) -> SceUID;
+    pub fn sceKernelCreateMutex(
+        name: *const u8,
+        attr: SceUInt,
+        initCount: i32,
+        option: *mut SceKernelMutexOptParam,
+    ) -> SceUID;
     pub fn sceKernelOpenMutex(name: *const u8) -> i32;
     pub fn sceKernelCloseMutex(mutexid: SceUID) -> i32;
     pub fn sceKernelDeleteMutex(mutexid: SceUID) -> i32;
@@ -40,5 +45,5 @@ extern "C" {
 
     // Threads
     pub fn sceKernelDelayThread(delay: SceUInt) -> i32;
-    
+
 }
