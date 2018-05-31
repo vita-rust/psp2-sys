@@ -4,6 +4,7 @@ cache:
   cargo: true
   directories:
     - "$SCCACHE_DIR"
+    - "$HOME/.xargo"
 
 addons:
   apt:
