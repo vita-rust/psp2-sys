@@ -68,6 +68,21 @@ else
 fi
 
 
+### Setup cargo-make ###########################################################
+
+echo -n "Fetching latest available 'cargo-script' version..."
+INSTALLED=$(_installed cargo script)
+LATEST=$(_latest cargo-script)
+echo "${LATEST} (installed: ${INSTALLED})"
+
+if [ "$INSTALLED" = "$LATEST" ]; then
+  echo "Using cached 'cargo-script'"
+else
+  echo "Compiling latest 'cargo-script' from source"
+  cargo install --debug -f cargo-make
+fi
+
+
 ### Setup vdpm #################################################################
 
 echo "Fetching latest Vita SDK..."
