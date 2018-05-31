@@ -9,6 +9,9 @@ load_script = [
   """
 ]
 
+[env]
+CARGO_TARGET_DIR = "target"
+
 [tasks.default]
 alias = "build"
 
