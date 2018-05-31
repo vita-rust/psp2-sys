@@ -3,7 +3,6 @@ language: rust
 cache:
   cargo: true
   directories:
-    - "$VDPM_GIT_DIR"
     - "$SCCACHE_DIR"
 
 addons:

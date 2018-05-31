@@ -4,7 +4,7 @@ set -e +x
 
 # Find the installed version of a binary, if any
 _installed() {
-    VERSION=$($@ --version 2>/dev/null || echo "$@ none")
+    VERSION=$($@ --version 2>&1 | head -n1 || echo "$@ none")
     echo $VERSION | rev | cut -d' ' -f1 | rev
 }
 
@@ -27,15 +27,30 @@ LATEST=$(_latest sccache)
 echo "${LATEST} (installed: ${INSTALLED})"
 
 if [ "$INSTALLED" = "$LATEST" ]; then
-  echo "Using cached 'sccache'"
+  echo "Using cached 'sccache'."
 else
-  echo "Installing latest 'sccache' from mozilla/sccache"
+  echo "Installing latest 'sccache' from mozilla/sccache."
   URL="https://github.com/mozilla/sccache/releases/download/${LATEST}/sccache-${LATEST}-x86_64-unknown-linux-musl.tar.gz"
   curl -SsL $URL | tar xz -C /tmp
   mv /tmp/sccache-${LATEST}-x86_64-unknown-linux-musl/sccache $HOME/.cargo/bin/sccache
 fi
 
 mkdir -p $SCCACHE_DIR
+
+
+### Setup xargo ################################################################
+
+echo -n "Fetching latest available 'xargo' version... "
+INSTALLED=$(_installed xargo)
+LATEST=$(_latest xargo)
+echo "${LATEST} (installed: ${INSTALLED})"
+
+if [ "$INSTALLED" = "$LATEST" ]; then
+  echo "Using cached 'xargo'"
+else
+  echo "Compiling latest 'xargo' from source"
+  cargo install --debug -f xargo
+fi
 
 
 ### Setup cargo-make ###########################################################
@@ -48,7 +63,7 @@ echo "${LATEST} (installed: ${INSTALLED})"
 if [ "$INSTALLED" = "$LATEST" ]; then
   echo "Using cached 'cargo-make'"
 else
-  echo "Installing latest 'cargo-make' from source"
+  echo "Compiling latest 'cargo-make' from source"
   cargo install --debug -f cargo-make
 fi
 
