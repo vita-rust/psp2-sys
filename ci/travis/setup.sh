@@ -34,6 +34,21 @@ fi
 mkdir -p $SCCACHE_DIR
 
 
+### Setup cargo-make ###########################################################
+
+echo -n "Fetching latest available 'cargo-make' version..."
+INSTALLED=$(_installed cargo make)
+LATEST=$(_latest cargo-make)
+echo "${LATEST} (installed: ${INSTALLED})"
+
+if [ "$INSTALLED" = "$LATEST" ]; then
+  echo "Using cached 'cargo-make'"
+else
+  echo "Installing latest 'cargo-make' from source"
+  cargo install --debug -f cargo-make
+fi
+
+
 ### Setup vdpm #################################################################
 
 echo "Fetching latest Vita SDK..."
