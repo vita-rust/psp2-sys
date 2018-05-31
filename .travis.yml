@@ -29,17 +29,11 @@ env:
     - PATH="$VITASDK/bin:$PATH"
 
 install:
-  - rustup component add rust-src
   - ci/travis/setup.sh
-  - cargo install --debug xargo -f
-  - mkdir -p target
-  - curl -SsL "https://github.com/vita-rust/common/raw/master/armv7-vita-eabihf.json" > target/armv7-vita-eabihf.json
 
 script:
   - cargo make build                                    # Compile natively
-  - RUST_TARGET_PATH="$(pwd)/target" xargo build --release -vv --target armv7-vita-eabihf
-  # - cargo make -lverbose xbuild                                   # Cross-compile
-  # - cd examples/hello_rust_world  && cargo make vpk     # Build example VPK
+  - cd examples/hello_rust_world  && cargo make vpk     # Build example VPK
 
 # deploy:
 #   provider: script

@@ -15,6 +15,10 @@ _latest() {
 }
 
 
+### Setup rust-src #############################################################
+rustup component add rust-src
+
+
 ### Setup sccache ##############################################################
 
 echo -n "Fetching latest available 'sccache' version... "
