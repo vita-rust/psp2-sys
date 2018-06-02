@@ -8,6 +8,7 @@ repository  = "https://github.com/vita-rust/psp2-sys"
 readme      = "README.md"
 keywords    = ["ps-vita"]
 categories  = ["no-std", "external-ffi-bindings", "os", "hardware-support"]
+exclude     = ["ci/travis/setup.sh", "Makefile.toml"]
 
 [lib]
 name        = "psp2_sys"
