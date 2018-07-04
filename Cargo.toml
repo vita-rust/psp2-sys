@@ -1,6 +1,6 @@
 [package]
 name        = "psp2-sys"
-version     = "0.1.0"
+version     = "0.1.1"
 authors     = ["Martin Larralde <martin.larralde@ens-cachan.fr>"]
 license     = "MIT"
 description = "Unsafe Rust FFI bindings to the psp2 headers"

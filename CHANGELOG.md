@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.1.1] - 2018-07-04
+
+### Changed
+
+- Change `build.rs` only to warn about missing `$VITASDK` environment variable
+  (allows `cargo doc` without `$VITASDK` set)
+
+
 ## [0.1.0] - 2018-07-04
 
 ### Added
@@ -32,4 +40,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [Type Defines]: https://docs.vitasdk.org/group__SceTypes.html
 
 
-[Unreleased]: https://github.com/althonos/pruefung/compare/0.1.0...HEAD
+[Unreleased]: https://github.com/althonos/pruefung/compare/0.1.1...HEAD
+[0.1.1]: https://github.com/althonos/pruefung/compare/0.1.0...0.1.1
