@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [0.1.0] - 2018-07-04
+
 ### Added
 
 - Complete **userspace** bindings to:
@@ -28,3 +30,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [System Memory Library]: https://docs.vitasdk.org/group__SceSysmem.html
 [Thread Manager Library]: https://docs.vitasdk.org/group__SceThreadMgr.html
 [Type Defines]: https://docs.vitasdk.org/group__SceTypes.html
+
+
+[Unreleased]: https://github.com/althonos/pruefung/compare/0.1.0...HEAD

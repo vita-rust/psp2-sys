@@ -35,6 +35,9 @@ script:
   - cargo make xbuild                                   # Cross-compile
   - cd examples/hello_rust_world  && cargo make vpk     # Build example VPK
 
+before_deploy:
+  - cd $TRAVIS_BUILD_DIR
+
 deploy:
   provider: script
   script: cargo make publish-flow
