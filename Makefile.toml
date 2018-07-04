@@ -30,7 +30,10 @@ args = ["test"]
 dependencies = ["verify-project"]
 
 [tasks.publish]
-args = ["publish", "--token", "${CRATES_IO_TOKEN}"]
+alias = 'crates-publish'
+
+[tasks.crates-publish]
+script = ['cargo publish --token $CRATES_IO_TOKEN']
 
 [tasks.post-publish]
 dependencies = ["chandler"]
@@ -38,5 +41,8 @@ dependencies = ["chandler"]
 [tasks.chandler]
 description = "Update GitHub release notes with appropriate CHANGELOG sections"
 install_script = ["gem install chandler -n target/gems"]
-command = "target/gems/chandler"
-args = ["push", "--github=$(echo $CARGO_MAKE_CRATE_REPOSITORY | cut -d/ -f4-5)"]
+script = [
+  '''
+  target/gems/chandler push --github=$(echo $CARGO_MAKE_CRATE_REPOSITORY | cut -d/ -f4-5)
+  '''
+]
