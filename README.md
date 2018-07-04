@@ -8,12 +8,11 @@
 [![Crate](https://img.shields.io/crates/v/vitalloc.svg?maxAge=86400&style=flat-square)](https://crates.io/crates/psp2-sys)
 [![Documentation](https://img.shields.io/badge/docs-latest-4d76ae.svg?maxAge=86400&style=flat-square)](https://docs.rs/psp2-sys)
 [![CargoMake](https://img.shields.io/badge/built%20with-cargo--make-yellow.svg?maxAge=86400&style=flat-square)](https://sagiegurari.github.io/cargo-make)
-<!-- [![Codecov](https://img.shields.io/codecov/c/github/vita-rust/vitalloc.svg?maxAge=600&style=flat-square)](https://codecov.io/github/vita-rust/vitalloc) -->
 
 
 ## Usage
 
-This crate will link statically to the needed library stubs, so you'll need the
+This crate will link statically to the required library stubs, so you'll need the
 [`vitasdk`](https://vitasdk.org) set up and the `$VITASDK` environment variable set.
 
 See the [examples](https://github.com/vita-rust/psp2-sys/tree/master/examples)
@@ -22,7 +21,7 @@ to see how to setup a project using the raw bindings, or use the
 Rust [`std`](http://doc.rust-lang.org/nightly/std/) library.
 
 The submodules in this crate follow the file hierarchy of the `psp2` headers:
-so the FFI in the `psp2_sys::kernel::threadmgr` as the ones you would get in C
+so the FFI in the `psp2_sys::kernel::threadmgr` are the ones you would get in C
 after including `psp2/kernel/threadmgr.h`.
 
 ## Credits
