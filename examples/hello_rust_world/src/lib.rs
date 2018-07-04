@@ -1,5 +1,5 @@
 #![allow(dead_code, unused_imports, unused_variables, unused_macros, unused_parens)]
-#![feature(lang_items, core_intrinsics, start, used, const_fn)]
+#![feature(lang_items, core_intrinsics, panic_implementation, start, used, const_fn)]
 #![no_std]
 
 extern crate psp2_sys as psp2;
@@ -7,15 +7,17 @@ extern crate psp2_sys as psp2;
 mod debug;
 
 use core::fmt::Write;
+use core::intrinsics;
+use core::panic::PanicInfo;
 
 #[lang = "eh_personality"]
 #[no_mangle]
 pub extern "C" fn eh_personality() {}
 
-#[lang = "panic_fmt"]
+#[panic_implementation]
 #[no_mangle]
-pub extern "C" fn panic_fmt() -> ! {
-    loop {}
+fn panic(_info: &PanicInfo) -> ! {
+    unsafe { intrinsics::abort() }
 }
 
 #[no_mangle]
