@@ -30,7 +30,7 @@ args = ["test"]
 dependencies = ["verify-project"]
 
 [tasks.publish]
-args = ["publish", "--token", "$CRATES_IO_TOKEN"]
+args = ["publish", "--token", "${CRATES_IO_TOKEN}"]
 
 [tasks.post-publish]
 dependencies = ["chandler"]
