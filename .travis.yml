@@ -35,13 +35,13 @@ script:
   - cargo make xbuild                                   # Cross-compile
   - cd examples/hello_rust_world  && cargo make vpk     # Build example VPK
 
-# deploy:
-#   provider: script
-#   script: cargo make publish-flow
-#   on:
-#     tags: true
-#     repo: vita-rust/psp2-sys
-#     rust: stable
+deploy:
+  provider: script
+  script: cargo make publish-flow
+  on:
+    tags: true
+    repo: vita-rust/psp2-sys
+    rust: nightly
 
 notifications:
   email:

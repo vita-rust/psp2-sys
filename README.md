@@ -33,7 +33,7 @@ after including `psp2/kernel/threadmgr.h`.
 
 ## Disclaimer
 
-*`vitalloc` is not affiliated, sponsored, or otherwise endorsed by Sony
+*`psp2-sys` is not affiliated, sponsored, or otherwise endorsed by Sony
 Interactive Entertainment, LLC. PlayStation and PS Vita are trademarks or
 registered trademarks of Sony Interactive Entertainment, LLC. This software is
 provided "as is" without warranty of any kind under the MIT License.*
