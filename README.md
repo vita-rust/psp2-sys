@@ -5,7 +5,7 @@
 [![TravisCI](https://img.shields.io/travis/vita-rust/psp2-sys/master.svg?maxAge=600&style=flat-square)](https://travis-ci.org/vita-rust/psp2-sys/builds)
 [![Source](https://img.shields.io/badge/source-GitHub-303030.svg?maxAge=86400&style=flat-square)](https://github.com/vita-rust/psp2-sys)
 [![Changelog](https://img.shields.io/badge/keep%20a-changelog-8A0707.svg?maxAge=86400&style=flat-square)](http://keepachangelog.com/)
-[![Crate](https://img.shields.io/crates/v/vitalloc.svg?maxAge=86400&style=flat-square)](https://crates.io/crates/psp2-sys)
+[![Crate](https://img.shields.io/crates/v/psp2-sys.svg?maxAge=86400&style=flat-square)](https://crates.io/crates/psp2-sys)
 [![Documentation](https://img.shields.io/badge/docs-latest-4d76ae.svg?maxAge=86400&style=flat-square)](https://docs.rs/psp2-sys)
 [![CargoMake](https://img.shields.io/badge/built%20with-cargo--make-yellow.svg?maxAge=86400&style=flat-square)](https://sagiegurari.github.io/cargo-make)
 
