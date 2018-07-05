@@ -37,8 +37,8 @@
 //
 
 use self::SceGxmColorBaseFormat::*;
-use self::SceGxmColorFormat::*;
-use self::SceGxmColorSwizzle2Mode::*;
+// use self::SceGxmColorFormat::*;
+// use self::SceGxmColorSwizzle2Mode::*;
 use self::SceGxmColorSwizzle4Mode::*;
 use self::SceGxmMemoryAttribFlags::*;
 
@@ -1048,8 +1048,7 @@ pub enum SceGxmColorSurfaceType {
 //
 // typedef struct SceGxmRenderTarget SceGxmRenderTarget;
 //
-#[repr(C)]
-pub struct SceGxmSyncObject;
+pub enum SceGxmSyncObject {}
 //
 // typedef struct SceGxmVertexAttribute {
 // 	unsigned short streamIndex;
