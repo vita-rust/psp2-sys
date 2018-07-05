@@ -6,9 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+### Added
+
+- Complete **userspace** bindings to:
+  * the [Filesystem module]
+
+[Filesystem]: https://docs.vitasdk.org/group__Filesystem.html
+
 
 ## [0.1.1] - 2018-07-04
-
 ### Changed
 
 - Change `build.rs` only to warn about missing `$VITASDK` environment variable
@@ -16,7 +22,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [0.1.0] - 2018-07-04
-
 ### Added
 
 - Complete **userspace** bindings to:

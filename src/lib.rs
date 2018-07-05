@@ -8,6 +8,7 @@
 pub mod dialog;
 pub mod display;
 pub mod graphics;
+pub mod io;
 pub mod kernel;
 pub mod system_param;
 pub mod types;
