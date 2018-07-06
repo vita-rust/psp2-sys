@@ -6,8 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+### Fixed
 
-# [0.2.0] - 2018-07-06
+- Links in `CHANGELOG.md` file.
+
+
+## [v0.2.0] - 2018-07-06
 ### Added
 
 - Complete **userspace** bindings to:
@@ -27,16 +31,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [File Control Library]: https://docs.vitasdk.org/group__SceFcntlUser.html
 [File Status Library]: https://docs.vitasdk.org/group__SceStatUser.html
 [C Standard Library]: https://docs.vitasdk.org/group__SceCLibUser.html
+[Thread Manager Library]: https://docs.vitasdk.org/group__SceThreadMgrUser.html
 
 
-## [0.1.1] - 2018-07-04
+## [v0.1.1] - 2018-07-04
 ### Changed
 
-- Change `build.rs` only to warn about missing `$VITASDK` environment variable
+- `build.rs` only to warn about missing `$VITASDK` environment variable
   (allows `cargo doc` without `$VITASDK` set)
 
 
-## [0.1.0] - 2018-07-04
+## [v0.1.0] - 2018-07-04
 ### Added
 
 - Complete **userspace** bindings to:
@@ -60,6 +65,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [Type Defines]: https://docs.vitasdk.org/group__SceTypesUser.html
 
 
-[Unreleased]: https://github.com/althonos/pruefung/compare/0.2.0...HEAD
-[0.2.0]: https://github.com/althonos/pruefung/compare/0.1.1...0.2.0
-[0.1.1]: https://github.com/althonos/pruefung/compare/0.1.0...0.1.1
+[Unreleased]: https://github.com/vita-rust/psp2-sys/compare/v0.2.0...HEAD
+[v0.2.0]: https://github.com/vita-rust/psp2-sys/compare/v0.1.1...v0.2.0
+[v0.1.1]: https://github.com/vita-rust/psp2-sys/compare/v0.1.0...v0.1.1
+[v0.1.0]: https://github.com/vita-rust/psp2-sys/compare/147a58f...v0.1.0
