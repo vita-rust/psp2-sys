@@ -14,10 +14,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
   * the [File Control Library]
   * the [File Status Library]
   * the [C Standard Library]
+  * the [Random Number Library]
 - Partial **userspace** bindings to:
   * the *threading* part of the [Thread Manager Library]
   * the *semaphore* part of the [Thread Manager Library]
 
+[Random Number Library]: https://docs.vitasdk.org/group__SceRngUser.html
 [Device Control Library]: https://docs.vitasdk.org/group__SceDevCtlUser.html
 [Directory Entries Library]: https://docs.vitasdk.org/group__SceDirEntUser.html
 [File Control Library]: https://docs.vitasdk.org/group__SceFcntlUser.html
