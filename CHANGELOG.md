@@ -9,9 +9,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - Complete **userspace** bindings to:
-  * the [Filesystem module]
+  * the [Device Control Library]
+  * the [Directory Entries Library]
+  * the [File Control Library]
+  * the [File Status Library]
+  * the [C Standard Library]
 
-[Filesystem]: https://docs.vitasdk.org/group__Filesystem.html
+
+[Device Control Library]: https://docs.vitasdk.org/group__SceDevCtlUser.html
+[Directory Entries Library]: https://docs.vitasdk.org/group__SceDirEntUser.html
+[File Control Library]: https://docs.vitasdk.org/group__SceFcntlUser.html
+[File Status Library]: https://docs.vitasdk.org/group__SceStatUser.html
+[C Standard Library]: https://docs.vitasdk.org/group__SceCLibUser.html
 
 
 ## [0.1.1] - 2018-07-04
@@ -36,13 +45,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - A basic README with links to other `vita-rust` projects.
 - This CHANGELOG file.
 
-[Common Dialog Library]: https://docs.vitasdk.org/group__SceCommonDialog.html
-[Message Dialog Library]: https://docs.vitasdk.org/group__SceMessageDialog.html
-[GPU Graphics Library]: https://docs.vitasdk.org/group__SceGxm.html
-[System Parameters Defines]: https://docs.vitasdk.org/group__SceSystemParam.html
-[System Memory Library]: https://docs.vitasdk.org/group__SceSysmem.html
-[Thread Manager Library]: https://docs.vitasdk.org/group__SceThreadMgr.html
-[Type Defines]: https://docs.vitasdk.org/group__SceTypes.html
+[Common Dialog Library]: https://docs.vitasdk.org/group__SceCommonDialogUser.html
+[Message Dialog Library]: https://docs.vitasdk.org/group__SceMessageDialogUser.html
+[GPU Graphics Library]: https://docs.vitasdk.org/group__SceGxmUser.html
+[System Parameters Defines]: https://docs.vitasdk.org/group__SceSystemParamUser.html
+[System Memory Library]: https://docs.vitasdk.org/group__SceSysmemUser.html
+[Thread Manager Library]: https://docs.vitasdk.org/group__SceThreadMgrUser.html
+[Type Defines]: https://docs.vitasdk.org/group__SceTypesUser.html
 
 
 [Unreleased]: https://github.com/althonos/pruefung/compare/0.1.1...HEAD
