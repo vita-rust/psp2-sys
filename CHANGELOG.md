@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+
+# [0.2.0] - 2018-07-06
 ### Added
 
 - Complete **userspace** bindings to:
@@ -58,5 +60,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [Type Defines]: https://docs.vitasdk.org/group__SceTypesUser.html
 
 
-[Unreleased]: https://github.com/althonos/pruefung/compare/0.1.1...HEAD
+[Unreleased]: https://github.com/althonos/pruefung/compare/0.2.0...HEAD
+[0.2.0]: https://github.com/althonos/pruefung/compare/0.1.1...0.2.0
 [0.1.1]: https://github.com/althonos/pruefung/compare/0.1.0...0.1.1
