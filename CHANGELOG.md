@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+### Added
+- `dox` feature to disable linking to `vitasdk` stubs during compilation (use in  `docs.rs`)
+
+
 ### Fixed
 
 - Links in `CHANGELOG.md` file.

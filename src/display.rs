@@ -37,7 +37,10 @@ pub struct SceDisplayFrameBuf {
     pub height: u32,       //  framebuffer height
 }
 
-#[link(kind = "static", name = "SceDisplay_stub")]
+#[cfg_attr(
+    not(feature = "dox"),
+    link(kind = "static", name = "SceDisplay_stub")
+)]
 extern "C" {
     pub fn sceDisplaySetFrameBuf(
         pParam: *const SceDisplayFrameBuf,

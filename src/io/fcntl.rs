@@ -41,7 +41,10 @@ pub enum SceIoDevType {
     SCE_DEV_TYPE_MOUNTPT = 0x40, // Mount point
 }
 
-#[link(kind = "static", name = "SceIofilemgr_stub")]
+#[cfg_attr(
+    not(feature = "dox"),
+    link(kind = "static", name = "SceIofilemgr_stub")
+)]
 extern "C" {
     pub fn sceIoOpen(file: *const u8, flags: i32, mode: SceIoMode) -> SceUID;
     pub fn sceIoOpenAsync(file: *const u8, flags: i32, mode: SceIoMode) -> SceUID;

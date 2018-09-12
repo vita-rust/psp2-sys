@@ -158,7 +158,10 @@ pub struct SceMsgDialogResult {
 // 	param->sdkVersion = 0x03150021;
 // }
 
-#[link(name = "SceCommonDialog_stub", kind = "static")]
+#[cfg_attr(
+    not(feature = "dox"),
+    link(name = "SceCommonDialog_stub", kind = "static")
+)]
 extern "C" {
     pub fn sceMsgDialogInit(param: *const SceMsgDialogParam) -> i32;
     pub fn sceMsgDialogGetStatus() -> SceCommonDialogStatus;

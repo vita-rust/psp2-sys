@@ -10,6 +10,9 @@ keywords    = ["ps-vita", "psp2"]
 categories  = ["no-std", "external-ffi-bindings", "os", "hardware-support"]
 exclude     = ["ci/travis/setup.sh", "Makefile.toml"]
 
+[package.metadata.docs.rs]
+features = ["dox"]
+
 [lib]
 name        = "psp2_sys"
 path        = "src/lib.rs"
@@ -21,3 +24,5 @@ maintenance = { status = "actively-developed" }
 [features]
 default = []
 unsafe = []
+dox = []
+

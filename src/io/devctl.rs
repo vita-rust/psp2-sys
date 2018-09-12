@@ -10,7 +10,10 @@ pub struct SceIoDevInfo {
     pub unk: *mut ::void,
 }
 
-#[link(kind = "static", name = "SceLibKernel_stub")]
+#[cfg_attr(
+    not(feature = "dox"),
+    link(kind = "static", name = "SceLibKernel_stub")
+)]
 extern "C" {
     pub fn sceIoDevctl(
         dev: *const u8,

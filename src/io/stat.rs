@@ -52,7 +52,10 @@ pub struct SceIoStat {
     pub st_private: [u32; 6],  // Device-specific data
 }
 
-#[link(kind = "static", name = "SceLibKernel_stub")]
+#[cfg_attr(
+    not(feature = "dox"),
+    link(kind = "static", name = "SceLibKernel_stub")
+)]
 extern "C" {
     pub fn sceIoMkdir(dir: *const u8, mode: SceMode) -> i32;
     pub fn sceIoRmdir(path: *const u8) -> i32;

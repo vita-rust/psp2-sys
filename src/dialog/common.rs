@@ -102,7 +102,10 @@ pub struct SceCommonDialogParam {
     pub magic: SceUInt32,
 }
 
-#[link(name = "SceCommonDialog_stub", kind = "static")]
+#[cfg_attr(
+    not(feature = "dox"),
+    link(name = "SceCommonDialog_stub", kind = "static")
+)]
 extern "C" {
     pub fn sceCommonDialogSetConfigParam(configParam: *const SceCommonDialogConfigParam) -> i32;
     pub fn sceCommonDialogUpdate(updateParam: *const SceCommonDialogUpdateParam) -> i32;
