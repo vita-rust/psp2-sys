@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [v0.2.2] - 2018-09-12
 ### Fixed
 - Fix missing `#[cfg_attr(...]` in `psp_sys::kernel`
 
@@ -72,7 +73,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [Type Defines]: https://docs.vitasdk.org/group__SceTypesUser.html
 
 
-[Unreleased]: https://github.com/vita-rust/psp2-sys/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/vita-rust/psp2-sys/compare/v0.2.2...HEAD
+[v0.2.2]: https://github.com/vita-rust/psp2-sys/compare/v0.2.1...v0.2.2
 [v0.2.1]: https://github.com/vita-rust/psp2-sys/compare/v0.2.0...v0.2.1
 [v0.2.0]: https://github.com/vita-rust/psp2-sys/compare/v0.1.1...v0.2.0
 [v0.1.1]: https://github.com/vita-rust/psp2-sys/compare/v0.1.0...v0.1.1
