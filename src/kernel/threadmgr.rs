@@ -110,7 +110,10 @@ pub struct SceKernelSemaInfo {
     pub numWaitThreads: i32,
 }
 
-#[link(kind = "static", name = "SceLibKernel_stub")]
+#[cfg_attr(
+    not(feature = "dox"),
+    link(kind = "static", name = "SceLibKernel_stub")
+)]
 extern "C" {
 
     // Mutexes

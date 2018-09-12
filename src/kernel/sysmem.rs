@@ -63,7 +63,10 @@ pub enum SceKernelMemoryType {
     SCE_KERNEL_MEMORY_TYPE_NORMAL = 0xD0,
 }
 
-#[link(kind = "static", name = "SceLibKernel_stub")]
+#[cfg_attr(
+    not(feature = "dox"),
+    link(kind = "static", name = "SceLibKernel_stub")
+)]
 extern "C" {
     pub fn sceKernelAllocMemBlock(
         name: *const u8,
