@@ -28,7 +28,7 @@ env:
     - PATH="$VITASDK/bin:$PATH"
 
 install:
-  - ci/travis/setup.sh
+  - curl -SsL "https://raw.githubusercontent.com/vita-rust/common/master/ci/travis/setup.sh" | sh
 
 script:
   - cargo make build                                    # Compile natively
