@@ -145,12 +145,12 @@ pub struct SceCtrlRapidFireRule {
 pub struct SceCtrlActuator {
     pub small: u8,
     pub large: u8,
-    pub unk: [u8; 6],
+    unk: [u8; 6],
 }
 
 #[repr(C)]
 pub struct SceCtrlPortInfo {
-    port: [SceCtrlExternalInputMode; 5],
+    pub port: [SceCtrlExternalInputMode; 5],
     unk: [u8; 11],
 }
 
