@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 
 ## [Unreleased]
+### Fixed
+- Fix `i32` being used instead of `u32` as `psp2_sys::types::SceUInt`
 
 ## [v0.2.2] - 2018-09-12
 ### Fixed

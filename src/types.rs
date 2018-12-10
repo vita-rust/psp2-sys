@@ -11,7 +11,7 @@ pub type SceInt32 = i32;
 pub type SceUInt32 = u32;
 
 pub type SceInt = i32;
-pub type SceUInt = i32;
+pub type SceUInt = u32;
 
 pub type SceInt64 = i64;
 pub type SceUInt64 = u64;
