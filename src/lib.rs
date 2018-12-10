@@ -5,6 +5,7 @@
 #![allow(dead_code)]
 #![no_std]
 
+pub mod ctrl;
 pub mod dialog;
 pub mod display;
 pub mod graphics;
