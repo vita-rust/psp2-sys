@@ -136,7 +136,7 @@ impl<'a> DebugScreen<'a> {
                 continue;
             }
 
-            let mut vram = &mut self.base[self.coord_x + self.coord_y * SCREEN_FB_WIDTH..];
+            let vram = &mut self.base[self.coord_x + self.coord_y * SCREEN_FB_WIDTH..];
             let mut font =
                 &DEBUG_FONT.glyphs[(chr - DEBUG_FONT.first) as usize * bytes_per_glyph..];
             let mut mask = 1 << 7;
