@@ -44,8 +44,8 @@ pub type SceByte8 = u8;
 pub type SceWChar16 = u16;
 pub type SceWChar32 = u32;
 
-pub type SceVoid = ::void;
-pub type ScePVoid = *mut ::void;
+pub type SceVoid = crate::void;
+pub type ScePVoid = *mut crate::void;
 
 pub type SceIntPtr = i32;
 pub type SceUIntPtr = u32;
@@ -202,7 +202,7 @@ pub union SceUnion32 {
     uc: [u8; 4],
     c: [i8; 4],
     f: f32,
-    p: *mut ::void,
+    p: *mut crate::void,
 }
 
 #[derive(Copy, Clone)]

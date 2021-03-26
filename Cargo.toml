@@ -2,6 +2,7 @@
 name        = "psp2-sys"
 version     = "0.2.2"
 authors     = ["Martin Larralde <martin.larralde@ens-cachan.fr>"]
+edition     = "2018"
 license     = "MIT"
 description = "Unsafe Rust FFI bindings to the psp2 headers"
 repository  = "https://github.com/vita-rust/psp2-sys"
@@ -25,4 +26,3 @@ maintenance = { status = "actively-developed" }
 default = []
 unsafe = []
 dox = []
-

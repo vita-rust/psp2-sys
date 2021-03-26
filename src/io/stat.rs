@@ -1,7 +1,7 @@
-use types::SceDateTime;
-use types::SceMode;
-use types::SceOff;
-use types::SceUID;
+use crate::types::SceDateTime;
+use crate::types::SceMode;
+use crate::types::SceOff;
+use crate::types::SceUID;
 
 #[repr(i32)]
 pub enum SceIoAccessMode {

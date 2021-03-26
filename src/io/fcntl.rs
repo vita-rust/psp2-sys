@@ -1,6 +1,6 @@
-use types::SceOff;
-use types::SceSize;
-use types::SceUID;
+use crate::types::SceOff;
+use crate::types::SceSize;
+use crate::types::SceUID;
 
 #[repr(i32)]
 pub enum SceIoMode {
@@ -50,12 +50,12 @@ extern "C" {
     pub fn sceIoOpenAsync(file: *const u8, flags: i32, mode: SceIoMode) -> SceUID;
     pub fn sceIoClose(fd: SceUID) -> i32;
     pub fn sceIoCloseAsync(fd: SceUID) -> i32;
-    pub fn sceIoRead(fd: SceUID, data: *mut ::void, size: SceSize) -> i32;
-    pub fn sceIoReadAsync(fd: SceUID, data: *mut ::void, size: SceSize) -> i32;
-    pub fn sceIoPread(fd: SceUID, data: *mut ::void, size: SceSize, offset: SceOff) -> i32;
-    pub fn sceIoWrite(fd: SceUID, data: *const ::void, size: SceSize) -> i32;
-    pub fn sceIoWriteAsync(fd: SceUID, data: *const ::void, size: SceSize) -> i32;
-    pub fn sceIoPwrite(fd: SceUID, data: *const ::void, size: SceSize, offset: SceOff) -> i32;
+    pub fn sceIoRead(fd: SceUID, data: *mut crate::void, size: SceSize) -> i32;
+    pub fn sceIoReadAsync(fd: SceUID, data: *mut crate::void, size: SceSize) -> i32;
+    pub fn sceIoPread(fd: SceUID, data: *mut crate::void, size: SceSize, offset: SceOff) -> i32;
+    pub fn sceIoWrite(fd: SceUID, data: *const crate::void, size: SceSize) -> i32;
+    pub fn sceIoWriteAsync(fd: SceUID, data: *const crate::void, size: SceSize) -> i32;
+    pub fn sceIoPwrite(fd: SceUID, data: *const crate::void, size: SceSize, offset: SceOff) -> i32;
     pub fn sceIoLseek(fd: SceUID, offset: SceOff, whence: SceIoSeekMode) -> SceOff;
     pub fn sceIoLseekAsync(fd: SceUID, offset: SceOff, whence: SceIoSeekMode) -> SceOff;
     pub fn sceIoLseek32(fd: SceUID, offset: i32, whence: SceIoSeekMode) -> SceOff;

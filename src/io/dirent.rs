@@ -1,4 +1,4 @@
-use types::SceUID;
+use crate::types::SceUID;
 
 use super::stat::SceIoStat;
 
@@ -6,7 +6,7 @@ use super::stat::SceIoStat;
 pub struct SceIoDirent {
     pub d_stat: SceIoStat,
     pub d_name: [u8; 256],
-    pub d_private: *mut ::void,
+    pub d_private: *mut crate::void,
     pub dummy: i32,
 }
 

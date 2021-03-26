@@ -1,12 +1,12 @@
-use graphics::gxm::SceGxmColorFormat;
-use graphics::gxm::SceGxmColorSurfaceType;
-use graphics::gxm::SceGxmSyncObject;
-use system_param::SceSystemParamEnterButtonAssign;
-use system_param::SceSystemParamLang;
-use types::SceInt32;
-use types::ScePVoid;
-use types::SceUInt32;
-use types::SceUInt8;
+use crate::graphics::gxm::SceGxmColorFormat;
+use crate::graphics::gxm::SceGxmColorSurfaceType;
+use crate::graphics::gxm::SceGxmSyncObject;
+use crate::system_param::SceSystemParamEnterButtonAssign;
+use crate::system_param::SceSystemParamLang;
+use crate::types::SceInt32;
+use crate::types::ScePVoid;
+use crate::types::SceUInt32;
+use crate::types::SceUInt8;
 
 #[repr(u32)]
 pub enum SceCommonDialogErrorCode {

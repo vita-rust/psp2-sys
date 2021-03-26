@@ -1,6 +1,6 @@
-use types::SceChar8;
-use types::SceInt32;
-use types::SceUInt32;
+use crate::types::SceChar8;
+use crate::types::SceInt32;
+use crate::types::SceUInt32;
 
 use super::common::SceCommonDialogParam;
 use super::common::SceCommonDialogStatus;
