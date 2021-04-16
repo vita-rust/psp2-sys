@@ -1,8 +1,8 @@
-use types::SceSize;
-use types::SceUID;
-use types::SceUInt;
-use types::SceUInt32;
-use types::SceUInt64;
+use crate::types::SceSize;
+use crate::types::SceUID;
+use crate::types::SceUInt;
+use crate::types::SceUInt32;
+use crate::types::SceUInt64;
 
 type SceKernelSysClock = SceUInt64;
 
@@ -33,7 +33,7 @@ pub enum SceKernelMutexAttribute {
 
 // Threads
 
-type SceKernelThreadEntry = extern "C" fn(SceSize, *mut ::void) -> i32;
+type SceKernelThreadEntry = extern "C" fn(SceSize, *mut crate::void) -> i32;
 
 #[repr(C)]
 pub struct SceKernelThreadOptParam {
@@ -49,7 +49,7 @@ pub struct SceKernelThreadInfo {
     pub attr: SceUInt,
     pub status: i32,
     pub entry: SceKernelThreadEntry,
-    pub stack: *mut ::void,
+    pub stack: *mut crate::void,
     pub stackSize: i32,
     pub initPriority: i32,
     pub currentPriority: i32,
@@ -146,7 +146,7 @@ extern "C" {
         option: *const SceKernelThreadOptParam,
     ) -> SceUID;
     pub fn sceKernelDeleteThread(thid: SceUID) -> i32;
-    pub fn sceKernelStartThread(thid: SceUID, arglen: SceSize, argp: *mut ::void) -> i32;
+    pub fn sceKernelStartThread(thid: SceUID, arglen: SceSize, argp: *mut crate::void) -> i32;
     pub fn sceKernelWaitThreadEnd(thid: SceUID, stat: *mut i32, timeout: *mut SceUInt) -> i32;
     pub fn sceKernelWaitThreadEndCB(thid: SceUID, stat: *mut i32, timeout: *mut SceUInt) -> i32;
     pub fn sceKernelDelayThread(delay: SceUInt) -> i32;

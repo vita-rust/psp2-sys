@@ -1,5 +1,5 @@
-use types::SceSize;
-use types::SceUID;
+use crate::types::SceSize;
+use crate::types::SceUID;
 
 #[repr(u32)]
 pub enum SceDisplayErrorCode {
@@ -29,12 +29,12 @@ pub enum SceDisplaySetBufSync {
 
 #[repr(C)]
 pub struct SceDisplayFrameBuf {
-    pub size: SceSize,     //  sizeof(SceDisplayFrameBuf)
-    pub base: *mut ::void, //  Pointer to framebuffer
-    pub pitch: u32,        //  pitch pixels
-    pub pixelformat: u32,  //  pixel format (one of ::SceDisplayPixelFormat)
-    pub width: u32,        //  framebuffer width
-    pub height: u32,       //  framebuffer height
+    pub size: SceSize,          //  sizeof(SceDisplayFrameBuf)
+    pub base: *mut crate::void, //  Pointer to framebuffer
+    pub pitch: u32,             //  pitch pixels
+    pub pixelformat: u32,       //  pixel format (one of ::SceDisplayPixelFormat)
+    pub width: u32,             //  framebuffer width
+    pub height: u32,            //  framebuffer height
 }
 
 #[cfg_attr(

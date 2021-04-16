@@ -1,4 +1,4 @@
-#[repr(C)]
+#[repr(u32)]
 pub enum SceSystemParamId {
     /// Language settings
     SCE_SYSTEM_PARAM_ID_LANG = 1,
@@ -18,7 +18,7 @@ pub enum SceSystemParamId {
     SCE_SYSTEM_PARAM_ID_MAX_VALUE = 0xFFFFFFFF,
 }
 
-#[repr(C)]
+#[repr(u32)]
 pub enum SceSystemParamLang {
     /// Japanese
     SCE_SYSTEM_PARAM_LANG_JAPANESE,
@@ -64,7 +64,7 @@ pub enum SceSystemParamLang {
     SCE_SYSTEM_PARAM_LANG_MAX_VALUE = 0xFFFFFFFF,
 }
 
-#[repr(C)]
+#[repr(u32)]
 pub enum SceSystemParamEnterButtonAssign {
     SCE_SYSTEM_PARAM_ENTER_BUTTON_CIRCLE,
     SCE_SYSTEM_PARAM_ENTER_BUTTON_CROSS,

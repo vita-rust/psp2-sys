@@ -1,6 +1,6 @@
-use types::SceSize;
-use types::SceUID;
-use types::SceUInt32;
+use crate::types::SceSize;
+use crate::types::SceUID;
+use crate::types::SceUInt32;
 
 #[repr(i32)]
 pub enum SceKernelMemBlockType {
@@ -43,7 +43,7 @@ pub enum SceKernelModel {
 #[repr(C)]
 pub struct SceKernelMemBlockInfo {
     pub size: SceSize,
-    pub mappedBase: *mut ::void,
+    pub mappedBase: *mut crate::void,
     pub mappedSize: SceSize,
     pub memory_type: SceKernelMemoryType,
     pub access: SceUInt32,
@@ -75,19 +75,19 @@ extern "C" {
         optp: *mut SceKernelAllocMemBlockOpt,
     ) -> SceUID;
     pub fn sceKernelFreeMemBlock(uid: SceUID) -> i32;
-    pub fn sceKernelGetMemBlockBase(uid: SceUID, basep: *mut *mut ::void) -> i32;
-    pub fn sceKernelFindMemBlockByAddr(addr: *const ::void, size: SceSize) -> SceUID;
+    pub fn sceKernelGetMemBlockBase(uid: SceUID, basep: *mut *mut crate::void) -> i32;
+    pub fn sceKernelFindMemBlockByAddr(addr: *const crate::void, size: SceSize) -> SceUID;
     pub fn sceKernelGetMemBlockInfoByAddr(
-        base: *mut ::void,
+        base: *mut crate::void,
         info: *mut SceKernelMemBlockInfo,
     ) -> i32;
     pub fn sceKernelGetMemBlockInfoByRange(
-        base: *mut ::void,
+        base: *mut crate::void,
         size: SceSize,
         info: *mut SceKernelMemBlockInfo,
     ) -> i32;
     pub fn sceKernelAllocMemBlockForVM(name: *const u8, size: SceSize) -> SceUID;
-    pub fn sceKernelSyncVMDomain(uid: SceUID, data: *const ::void, size: SceSize) -> i32;
+    pub fn sceKernelSyncVMDomain(uid: SceUID, data: *const crate::void, size: SceSize) -> i32;
     pub fn sceKernelOpenVMDomain() -> i32;
     pub fn sceKernelCloseVMDomain() -> i32;
     pub fn sceKernelOpenMemBlock(name: *const u8, flags: i32) -> i32;

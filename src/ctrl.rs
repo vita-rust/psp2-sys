@@ -1,9 +1,4 @@
-use crate::types::SceUChar8;
-use crate::types::SceUInt;
-use crate::types::SceUInt64;
-use crate::types::SceUInt8;
-
-#[repr(C)]
+#[repr(u32)]
 pub enum SceCtrlErrorCode {
     SCE_CTRL_ERROR_INVALID_ARG = 0x80340001,
     SCE_CTRL_ERROR_PRIV_REQUIRED = 0x80340002,

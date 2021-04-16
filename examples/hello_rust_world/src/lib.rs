@@ -1,5 +1,5 @@
 #![allow(dead_code, unused_imports, unused_variables, unused_macros, unused_parens)]
-#![feature(lang_items, core_intrinsics, panic_handler, start, used, const_fn)]
+#![feature(lang_items, core_intrinsics, start)]
 #![no_std]
 
 extern crate psp2_sys as psp2;
@@ -17,15 +17,15 @@ pub extern "C" fn eh_personality() {}
 #[panic_handler]
 #[no_mangle]
 fn panic(_info: &PanicInfo) -> ! {
-    unsafe { intrinsics::abort() }
+    intrinsics::abort()
 }
 
 #[no_mangle]
 pub unsafe fn main(_argc: isize, _argv: *const *const u8) -> isize {
     let mut screen = debug::screen::DebugScreen::new();
-    write!(screen, "This bare-metal is starting to rust!\n");
+    write!(screen, "This bare-metal is starting to rust!\n").ok();
     psp2::kernel::threadmgr::sceKernelDelayThread(1 * 1000000); // Wait for 1 second
-    write!(screen, "See ? I told you !\n");
+    write!(screen, "See ? I told you !\n").ok();
     psp2::kernel::threadmgr::sceKernelDelayThread(3 * 1000000);
     psp2::kernel::processmgr::sceKernelExitProcess(0);
     return 0;

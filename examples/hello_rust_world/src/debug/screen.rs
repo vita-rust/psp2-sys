@@ -3,17 +3,17 @@ use core::fmt::Write;
 use core::mem::size_of;
 use core::slice::from_raw_parts_mut;
 
-use psp2::display::sceDisplaySetFrameBuf;
-use psp2::display::SceDisplayFrameBuf;
-use psp2::display::SceDisplaySetBufSync::SCE_DISPLAY_SETBUF_NEXTFRAME;
-use psp2::kernel::sysmem::sceKernelAllocMemBlock;
-use psp2::kernel::sysmem::sceKernelGetMemBlockBase;
-use psp2::kernel::sysmem::SceKernelMemBlockType::SCE_KERNEL_MEMBLOCK_TYPE_USER_CDRAM_RW;
-use psp2::kernel::threadmgr::sceKernelCreateMutex;
-use psp2::kernel::threadmgr::sceKernelLockMutex;
-use psp2::kernel::threadmgr::sceKernelUnlockMutex;
-use psp2::types::SceUID;
-use psp2::void;
+use crate::psp2::display::sceDisplaySetFrameBuf;
+use crate::psp2::display::SceDisplayFrameBuf;
+use crate::psp2::display::SceDisplaySetBufSync::SCE_DISPLAY_SETBUF_NEXTFRAME;
+use crate::psp2::kernel::sysmem::sceKernelAllocMemBlock;
+use crate::psp2::kernel::sysmem::sceKernelGetMemBlockBase;
+use crate::psp2::kernel::sysmem::SceKernelMemBlockType::SCE_KERNEL_MEMBLOCK_TYPE_USER_CDRAM_RW;
+use crate::psp2::kernel::threadmgr::sceKernelCreateMutex;
+use crate::psp2::kernel::threadmgr::sceKernelLockMutex;
+use crate::psp2::kernel::threadmgr::sceKernelUnlockMutex;
+use crate::psp2::types::SceUID;
+use crate::psp2::void;
 
 use super::font::DEBUG_FONT;
 
@@ -136,7 +136,7 @@ impl<'a> DebugScreen<'a> {
                 continue;
             }
 
-            let mut vram = &mut self.base[self.coord_x + self.coord_y * SCREEN_FB_WIDTH..];
+            let vram = &mut self.base[self.coord_x + self.coord_y * SCREEN_FB_WIDTH..];
             let mut font =
                 &DEBUG_FONT.glyphs[(chr - DEBUG_FONT.first) as usize * bytes_per_glyph..];
             let mut mask = 1 << 7;

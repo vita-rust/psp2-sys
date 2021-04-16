@@ -22,6 +22,7 @@ pub type SceULong64 = u64;
 pub type SceSize = u32;
 pub type SceSSize = i32;
 
+#[derive(Copy, Clone, Debug)]
 #[repr(i32)]
 pub enum SceBool {
     SCE_FALSE = 0,
@@ -43,25 +44,28 @@ pub type SceByte8 = u8;
 pub type SceWChar16 = u16;
 pub type SceWChar32 = u32;
 
-pub type SceVoid = ::void;
-pub type ScePVoid = *mut ::void;
+pub type SceVoid = crate::void;
+pub type ScePVoid = *mut crate::void;
 
 pub type SceIntPtr = i32;
 pub type SceUIntPtr = u32;
 pub type SceUIntVAddr = SceUIntPtr;
 
+#[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceIVector2 {
     x: SceInt,
     y: SceInt,
 }
 
+#[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceFVector2 {
     x: SceFloat,
     y: SceFloat,
 }
 
+#[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceIVector3 {
     x: SceInt,
@@ -69,6 +73,7 @@ pub struct SceIVector3 {
     z: SceInt,
 }
 
+#[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceFVector3 {
     x: SceFloat,
@@ -76,6 +81,7 @@ pub struct SceFVector3 {
     z: SceFloat,
 }
 
+#[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceIVector4 {
     x: SceInt,
@@ -84,6 +90,7 @@ pub struct SceIVector4 {
     w: SceInt,
 }
 
+#[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceUVector4 {
     x: SceUInt,
@@ -92,6 +99,7 @@ pub struct SceUVector4 {
     w: SceUInt,
 }
 
+#[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceFVector4 {
     x: SceFloat,
@@ -100,18 +108,21 @@ pub struct SceFVector4 {
     w: SceFloat,
 }
 
+#[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceIMatrix2 {
     x: SceIVector2,
     y: SceIVector2,
 }
 
+#[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceFMatrix2 {
     x: SceFVector2,
     y: SceFVector2,
 }
 
+#[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceIMatrix3 {
     x: SceIVector3,
@@ -119,6 +130,7 @@ pub struct SceIMatrix3 {
     z: SceIVector3,
 }
 
+#[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceFMatrix3 {
     x: SceFVector3,
@@ -126,6 +138,7 @@ pub struct SceFMatrix3 {
     z: SceFVector3,
 }
 
+#[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceIMatrix4 {
     x: SceIVector4,
@@ -134,6 +147,7 @@ pub struct SceIMatrix4 {
     w: SceIVector4,
 }
 
+#[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceUMatrix4 {
     x: SceUVector4,
@@ -142,6 +156,7 @@ pub struct SceUMatrix4 {
     w: SceUVector4,
 }
 
+#[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceFMatrix4 {
     x: SceFVector4,
@@ -150,6 +165,7 @@ pub struct SceFMatrix4 {
     w: SceFVector4,
 }
 
+#[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceFQuaternion {
     x: SceFloat,
@@ -158,6 +174,7 @@ pub struct SceFQuaternion {
     w: SceFloat,
 }
 
+#[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceFColor {
     r: SceFloat,
@@ -166,6 +183,7 @@ pub struct SceFColor {
     a: SceFloat,
 }
 
+#[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceFPlane {
     a: SceFloat,
@@ -174,6 +192,7 @@ pub struct SceFPlane {
     d: SceFloat,
 }
 
+#[derive(Copy, Clone)]
 #[repr(C)]
 pub union SceUnion32 {
     ui: u32,
@@ -183,9 +202,10 @@ pub union SceUnion32 {
     uc: [u8; 4],
     c: [i8; 4],
     f: f32,
-    p: *mut ::void,
+    p: *mut crate::void,
 }
 
+#[derive(Copy, Clone)]
 #[repr(C)]
 pub union SceUnion64 {
     ull: SceULong64,
@@ -201,6 +221,7 @@ pub union SceUnion64 {
     iv: SceIVector2,
 }
 
+#[derive(Copy, Clone)]
 #[repr(C)]
 pub union SceUnion128 {
     ull: [SceULong64; 2],
@@ -219,6 +240,7 @@ pub union SceUnion128 {
     iv: SceIVector4,
 }
 
+#[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceDateTime {
     year: u16,
