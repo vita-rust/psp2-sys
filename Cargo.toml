@@ -1,13 +1,16 @@
 [package]
 name        = "psp2-sys"
 version     = "0.2.2"
-authors     = ["Martin Larralde <martin.larralde@ens-cachan.fr>"]
+authors     = [
+    "Martin Larralde <martin.larralde@ens-cachan.fr>",
+    "Gabriel GRONDIN <gglinnk@protonmail.com>"
+]
 edition     = "2018"
 license     = "MIT"
 description = "Unsafe Rust FFI bindings to the psp2 headers"
 repository  = "https://github.com/vita-rust/psp2-sys"
 readme      = "README.md"
-keywords    = ["ps-vita", "psp2"]
+keywords    = ["psvita", "ps vita", "ps-vita", "psp2"]
 categories  = ["no-std", "external-ffi-bindings", "os", "hardware-support"]
 exclude     = ["ci/travis/setup.sh", "Makefile.toml"]
 
