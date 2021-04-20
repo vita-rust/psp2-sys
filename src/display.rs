@@ -34,13 +34,13 @@ pub enum SceDisplaySetBufSync {
     SCE_DISPLAY_SETBUF_NEXTFRAME = 1,
 }
 
-/// Structure used with psp2_sys::display::sceDisplaySetFrameBuf to set/update
+/// Structure used with ::sceDisplaySetFrameBuf to set/update
 /// framebuffer
 /// 
 /// Original screen resolution is 960x544, but the following resolutions can also
 /// be supplied as width and height : 480x272, 640x368, 720x408
 /// 
-/// > Note: This structure is returned by psp2_sys::display::sceDisplayGetFrameBuf
+/// > Note: This structure is returned by ::sceDisplayGetFrameBuf
 #[repr(C)]
 pub struct SceDisplayFrameBuf {
     /// sizeof(SceDisplayFrameBuf)
@@ -49,7 +49,7 @@ pub struct SceDisplayFrameBuf {
     pub base: *mut crate::void,
     /// Pitch pixels
     pub pitch: u32,
-    /// Pixel format (one of psp2_sys::display::SceDisplayPixelFormat)
+    /// Pixel format (one of ::SceDisplayPixelFormat)
     pub pixelformat: u32,
     /// Framebuffer width
     pub width: u32,
@@ -66,9 +66,9 @@ extern "C" {
     /// 
     /// Returns 0 on success, < 0 on error
     ///
-    /// * `pParam` (out) - Pointer to a psp2_sys::display::SceDisplayFrameBuf
+    /// * `pParam` (out) - Pointer to a ::SceDisplayFrameBuf
     /// structure
-    /// * `sync` - One of psp2_sys::display::SceDisplaySetBufSync
+    /// * `sync` - One of ::SceDisplaySetBufSync
     ///
     /// > Note: If NULL is provided as pParam pointer, output is blacked out
     pub fn sceDisplaySetFrameBuf(
@@ -80,9 +80,9 @@ extern "C" {
     /// 
     /// Returns 0 on success, < 0 on error
     ///     
-    /// * `pParam` (out) - Pointer to a psp2_sys::display::SceDisplayFrameBuf
+    /// * `pParam` (out) - Pointer to a ::SceDisplayFrameBuf
     /// structure which will receive framebuffer parameters
-    /// * `sync` - One of psp2_sys::display::SceDisplaySetBufSync
+    /// * `sync` - One of ::SceDisplaySetBufSync
     pub fn sceDisplayGetFrameBuf(
         pParam: *mut SceDisplayFrameBuf,
         sync: SceDisplaySetBufSync,
