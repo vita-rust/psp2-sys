@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Complete documentation for:
   * system_param
   * display
+  * ctrl
 
 ### Fixed
 - Fix `i32` being used instead of `u32` as `psp2_sys::types::SceUInt`
