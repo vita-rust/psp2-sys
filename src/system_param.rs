@@ -1,3 +1,6 @@
+//! SCE System Parameters
+
+/// System param id
 #[repr(u32)]
 pub enum SceSystemParamId {
     /// Language settings
@@ -18,6 +21,7 @@ pub enum SceSystemParamId {
     SCE_SYSTEM_PARAM_ID_MAX_VALUE = 0xFFFFFFFF,
 }
 
+/// Language settings
 #[repr(u32)]
 pub enum SceSystemParamLang {
     /// Japanese
@@ -64,6 +68,7 @@ pub enum SceSystemParamLang {
     SCE_SYSTEM_PARAM_LANG_MAX_VALUE = 0xFFFFFFFF,
 }
 
+/// Assignment of enter button
 #[repr(u32)]
 pub enum SceSystemParamEnterButtonAssign {
     SCE_SYSTEM_PARAM_ENTER_BUTTON_CIRCLE,
@@ -71,17 +76,26 @@ pub enum SceSystemParamEnterButtonAssign {
     SCE_SYSTEM_PARAM_ENTER_BUTTON_MAX_VALUE = 0xFFFFFFFF,
 }
 
+// Username
+/// Max size of username
 pub const SCE_SYSTEM_PARAM_USERNAME_MAXSIZE: usize = 17;
 
+/// Date display format
 #[repr(C)]
 pub enum SceSystemParamDateFormat {
+    /// Year/Month/Day
     SCE_SYSTEM_PARAM_DATE_FORMAT_YYYYMMDD,
+    /// Day/Month/Year
     SCE_SYSTEM_PARAM_DATE_FORMAT_DDMMYYYY,
+    /// Month/Day/Year
     SCE_SYSTEM_PARAM_DATE_FORMAT_MMDDYYYY,
 }
 
+/// Time display format
 #[repr(C)]
 pub enum SceSystemParamTimeFormat {
+    /// 12-hour clock
     SCE_SYSTEM_PARAM_TIME_FORMAT_12HR,
+    /// 24-hour clock
     SCE_SYSTEM_PARAM_TIME_FORMAT_24HR,
 }

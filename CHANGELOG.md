@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - Complete **userspace** bindings to:
   * the [Control Library]
+- Complete documentation for:
+  * system_param
+  * display
 
 ### Fixed
 - Fix `i32` being used instead of `u32` as `psp2_sys::types::SceUInt`
