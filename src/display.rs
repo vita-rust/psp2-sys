@@ -34,15 +34,13 @@ pub enum SceDisplaySetBufSync {
     SCE_DISPLAY_SETBUF_NEXTFRAME = 1,
 }
 
-/**
-Structure used with psp2_sys::display::sceDisplaySetFrameBuf to set/update
-framebuffer
-
-Original screen resolution is 960x544, but the following resolutions can also
-be supplied as width and height : 480x272, 640x368, 720x408
-
-[^note]: This structure is returned by psp2_sys::display::sceDisplayGetFrameBuf
-*/
+/// Structure used with psp2_sys::display::sceDisplaySetFrameBuf to set/update
+/// framebuffer
+/// 
+/// Original screen resolution is 960x544, but the following resolutions can also
+/// be supplied as width and height : 480x272, 640x368, 720x408
+/// 
+/// > Note: This structure is returned by psp2_sys::display::sceDisplayGetFrameBuf
 #[repr(C)]
 pub struct SceDisplayFrameBuf {
     /// sizeof(SceDisplayFrameBuf)
@@ -72,7 +70,7 @@ extern "C" {
     /// structure
     /// * `sync` - One of psp2_sys::display::SceDisplaySetBufSync
     ///
-    /// [^note]: If NULL is provided as pParam pointer, output is blacked out
+    /// > Note: If NULL is provided as pParam pointer, output is blacked out
     pub fn sceDisplaySetFrameBuf(
         pParam: *const SceDisplayFrameBuf,
         sync: SceDisplaySetBufSync,
@@ -100,7 +98,7 @@ extern "C" {
     /// * `pFps` (out) - Pointer to a float variable to store current number of
     /// fps
     ///
-    /// [^note]: This function returns a theoretical value, this might not be
+    /// > Note: This function returns a theoretical value, this might not be
     /// the exact frame rate
     pub fn sceDisplayGetRefreshRate(
         pFps: *mut f32
