@@ -19,8 +19,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fix `i32` being used instead of `u32` as `psp2_sys::types::SceUInt`
 
 ### Changed
-- Type of variable used by `size` parameter in `kernel::rng::sceKernelGetRandomNumber` function. (`SceSize` instead of `u32`)
-
+- Type of variable used by `size` parameter of `ctrl::sceKernelGetRandomNumber` function. (`SceSize` instead of `u32`)
+- Type of variable used by `port` variable in struct `SceCtrlPortInfo` (`u8` instead of `SceCtrlExternalInputMode`)
+- Type of variable used by `r`, `g`, `b` parameters of `ctrl::sceCtrlSetLightBar` function. (`SceUInt8` instead of `u8`)
+- Type of variable used by `batt` parameters of `ctrl::sceCtrlGetBatteryInfo` function. (`SceUInt8` instead of `u8`)
 
 [Control Library]: https://docs.vitasdk.org/group__SceCtrlUser.html
 

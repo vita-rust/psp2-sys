@@ -1,5 +1,7 @@
 //! SCE Controls
 
+use crate::types::SceUInt8;
+
 /// Error codes enumeration.
 #[repr(u32)]
 pub enum SceCtrlErrorCode {
@@ -173,7 +175,7 @@ pub struct SceCtrlActuator {
 #[repr(C)]
 pub struct SceCtrlPortInfo {
     /// Controller type of each port (See ::SceCtrlExternalInputMode)
-    pub port: [SceCtrlExternalInputMode; 5],
+    pub port: [u8; 5],
     /// Unknown
     unk: [u8; 11],
 }
@@ -334,9 +336,9 @@ extern "C" {
     /// Returns 0 on success, < 0 on error.
     pub fn sceCtrlSetLightBar(
         port: i32,
-        r: u8,
-        g: u8,
-        b: u8
+        r: SceUInt8,
+        g: SceUInt8,
+        b: SceUInt8
     ) -> i32;
 
     /// Get controller port information.
@@ -356,7 +358,7 @@ extern "C" {
     /// Returns 0 on success, < 0 on error.
     pub fn sceCtrlGetBatteryInfo(
         port: i32,
-        batt: *mut u8
+        batt: *mut SceUInt8
     ) -> i32;
 
     /// Sets intercept.
