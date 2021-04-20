@@ -63,12 +63,12 @@ pub struct SceDisplayFrameBuf {
 )]
 extern "C" {
     /// Set/Update framebuffer parameters
-    /// 
-    /// Returns 0 on success, < 0 on error
     ///
     /// * `pParam` (out) - Pointer to a ::SceDisplayFrameBuf
     /// structure
     /// * `sync` - One of ::SceDisplaySetBufSync
+    /// 
+    /// Returns 0 on success, < 0 on error
     ///
     /// > Note: If NULL is provided as pParam pointer, output is blacked out
     pub fn sceDisplaySetFrameBuf(
@@ -77,12 +77,12 @@ extern "C" {
     ) -> i32;
 
     /// Get current framebuffer parameters
-    /// 
-    /// Returns 0 on success, < 0 on error
     ///     
     /// * `pParam` (out) - Pointer to a ::SceDisplayFrameBuf
     /// structure which will receive framebuffer parameters
     /// * `sync` - One of ::SceDisplaySetBufSync
+    /// 
+    /// Returns 0 on success, < 0 on error
     pub fn sceDisplayGetFrameBuf(
         pParam: *mut SceDisplayFrameBuf,
         sync: SceDisplaySetBufSync,
@@ -92,12 +92,12 @@ extern "C" {
     pub fn sceDisplayGetPrimaryHead() -> i32;
 
     /// Get current number of fps for the current screen mode
-    /// 
-    /// Returns 0 on success, < 0 on error
     ///    
     /// * `pFps` (out) - Pointer to a float variable to store current number of
     /// fps
     ///
+    /// Returns 0 on success, < 0 on error
+    /// 
     /// > Note: This function returns a theoretical value, this might not be
     /// the exact frame rate
     pub fn sceDisplayGetRefreshRate(
@@ -106,10 +106,10 @@ extern "C" {
 
     /// Get maximum framebuffer resolution
     ///
-    /// Returns 0 on success, < 0 on error
-    ///
     /// * `width` (out) - Maximum width
     /// * `height` (out) - Maximum height
+    /// 
+    /// Returns 0 on success, < 0 on error
     pub fn sceDisplayGetMaximumFrameBufResolution(
         width: *mut i32,
         height: *mut i32
