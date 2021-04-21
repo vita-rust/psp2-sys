@@ -14,13 +14,13 @@ pub enum SceCtrlErrorCode {
 }
 
 /// Enumeration for the digital controller buttons.
-/// 
+///
 /// Notes :
-/// > L1/R1/L3/R3 only can bind using ::sceCtrlPeekBufferPositiveExt2 and ::sceCtrlReadBufferPositiveExt2
-/// 
+/// > L1/R1/L3/R3 only can bind using [sceCtrlPeekBufferPositiveExt2] and [sceCtrlReadBufferPositiveExt2]
+///
 /// > Values bigger than 0x00010000 can be intercepted only with shell privileges
-/// 
-/// > Vita's L Trigger and R Trigger are mapped to L1 and R1 when using ::sceCtrlPeekBufferPositiveExt2 and ::sceCtrlReadBufferPositiveExt2
+///
+/// > Vita's L Trigger and R Trigger are mapped to L1 and R1 when using [sceCtrlPeekBufferPositiveExt2] and [sceCtrlReadBufferPositiveExt2]
 #[repr(C)]
 pub enum SceCtrlButtons {
     /// Select button.
@@ -59,7 +59,7 @@ pub enum SceCtrlButtons {
     SCE_CTRL_SQUARE = 0x00008000,
     /// Input not available because intercercepted by another application
     SCE_CTRL_INTERCEPTED = 0x00010000,
-    // SCE_CTRL_PSBUTTON : defined in SceCtrlButtons Implementation 
+    // SCE_CTRL_PSBUTTON : defined in SceCtrlButtons Implementation
     /// Headphone plugged in.
     SCE_CTRL_HEADPHONE = 0x00080000,
     /// Volume up button.
@@ -73,11 +73,11 @@ pub enum SceCtrlButtons {
 /// Implementation for SceCtrlButtons : Fixing missing enum variant
 impl SceCtrlButtons {
     /// L2 button.
-    pub const SCE_CTRL_L2:SceCtrlButtons = SceCtrlButtons::SCE_CTRL_LTRIGGER;
+    pub const SCE_CTRL_L2: SceCtrlButtons = SceCtrlButtons::SCE_CTRL_LTRIGGER;
     /// R2 button.
-    pub const SCE_CTRL_R2:SceCtrlButtons = SceCtrlButtons::SCE_CTRL_RTRIGGER;
+    pub const SCE_CTRL_R2: SceCtrlButtons = SceCtrlButtons::SCE_CTRL_RTRIGGER;
     /// Playstation (Home) button.
-    pub const SCE_CTRL_PSBUTTON:SceCtrlButtons = SceCtrlButtons::SCE_CTRL_INTERCEPTED;
+    pub const SCE_CTRL_PSBUTTON: SceCtrlButtons = SceCtrlButtons::SCE_CTRL_INTERCEPTED;
 }
 
 /// Enumeration for the controller types.
@@ -102,7 +102,7 @@ pub enum SceCtrlPadInputMode {
     SCE_CTRL_MODE_DIGITAL = 0,
     /// Digital buttons + Analog support.
     SCE_CTRL_MODE_ANALOG = 1,
-    /// Same as ::SCE_CTRL_MODE_ANALOG, but with larger range for analog sticks.
+    /// Same as [SCE_CTRL_MODE_ANALOG](crate::ctrl::SceCtrlPadInputMode::SCE_CTRL_MODE_ANALOG), but with larger range for analog sticks.
     SCE_CTRL_MODE_ANALOG_WIDE = 2,
 }
 
@@ -111,7 +111,7 @@ pub enum SceCtrlPadInputMode {
 pub struct SceCtrlData {
     /// The current read frame.
     pub timeStamp: u64,
-    /// Bit mask containing zero or more of ::SceCtrlButtons.
+    /// Bit mask containing zero or more of [SceCtrlButtons].
     pub buttons: u32,
     /// Left analogue stick, X axis.
     pub lx: u8,
@@ -149,7 +149,7 @@ pub struct SceCtrlData {
     _reserved: [u8; 4],
 }
 
-/// Structure to pass as argument to ::sceCtrlSetRapidFire
+/// Structure to pass as argument to [sceCtrlSetRapidFire]
 #[repr(C)]
 pub struct SceCtrlRapidFireRule {
     pub Mask: u32,
@@ -160,7 +160,7 @@ pub struct SceCtrlRapidFireRule {
     pub Break: u32,
 }
 
-/// Structure to pass as argument to ::sceCtrlSetActuator
+/// Structure to pass as argument to [sceCtrlSetActuator]
 #[repr(C)]
 pub struct SceCtrlActuator {
     /// Vibration strength of the small motor
@@ -171,10 +171,10 @@ pub struct SceCtrlActuator {
     unk: [u8; 6],
 }
 
-/// Structure to pass as argument to ::sceCtrlGetControllerPortInfo
+/// Structure to pass as argument to [sceCtrlGetControllerPortInfo]
 #[repr(C)]
 pub struct SceCtrlPortInfo {
-    /// Controller type of each port (See ::SceCtrlExternalInputMode)
+    /// Controller type of each port (See [SceCtrlExternalInputMode])
     pub port: [u8; 5],
     /// Unknown
     unk: [u8; 11],
@@ -182,209 +182,155 @@ pub struct SceCtrlPortInfo {
 
 #[cfg_attr(not(feature = "dox"), link(kind = "static", name = "SceCtrl_stub"))]
 extern "C" {
-    /// Set the controller mode.
-    /// 
-    /// * `mode` - One of ::SceCtrlPadInputMode.
-    /// 
+    /// Set the controller mode
+    ///
+    /// * `mode` - One of [SceCtrlPadInputMode].
+    ///
     /// Returns he previous mode, < 0 on error.
-    pub fn sceCtrlSetSamplingMode(
-        mode: SceCtrlPadInputMode
-    ) -> i32;
+    pub fn sceCtrlSetSamplingMode(mode: SceCtrlPadInputMode) -> i32;
 
-    /// Set the controller extend mode.
+    /// Set the controller extend mode
     ///
-    /// * `mode` - One of ::SceCtrlPadInputMode.
-    /// 
+    /// * `mode` - One of [SceCtrlPadInputMode].
+    ///
     /// Returns the previous mode, < 0 on error.
-    pub fn sceCtrlSetSamplingModeExt(
-        mode: SceCtrlPadInputMode
-    ) -> i32;
+    pub fn sceCtrlSetSamplingModeExt(mode: SceCtrlPadInputMode) -> i32;
 
-    /// Get the current controller mode.
+    /// Get the current controller mode
     ///
-    /// * `pMode` (out) - Return value, see ::SceCtrlPadInputMode.
-    /// 
+    /// * `pMode` (out) - Return value, see [SceCtrlPadInputMode].
+    ///
     /// Returns the previous mode, < 0 on error.
-    pub fn sceCtrlGetSamplingMode(
-        pMode: *mut SceCtrlPadInputMode
-    ) -> i32;
+    pub fn sceCtrlGetSamplingMode(pMode: *mut SceCtrlPadInputMode) -> i32;
 
-    /// Get the controller state information (polling, positive logic).
+    /// Get the controller state information (polling, positive logic)
     ///
     /// * `port` - use 0.
-    /// * `*pad_data` (out) - see ::SceCtrlData.
+    /// * `*pad_data` (out) - see [SceCtrlData].
     /// * `count` - Buffers count. Up to 64 buffers can be requested.
-    /// 
-    /// Returns buffers count, between 1 and 'count'. < 0 on error.
-    pub fn sceCtrlPeekBufferPositive(
-        port: i32,
-        pad_data: *mut SceCtrlData,
-        count: i32
-    ) -> i32;
-
-    /// Get the controller state information (polling, positive logic).
     ///
-    /// This function will bind L/R trigger value to L1/R1 instead of LTRIGGER/RTRIGGER
-    /// 
-    /// * `port` - use 0.
-    /// * `*pad_data` (out) - see ::SceCtrlData.
-    /// * `count` - Buffers count. Up to 64 buffers can be requested.
-    /// 
     /// Returns buffers count, between 1 and 'count'. < 0 on error.
-    pub fn sceCtrlPeekBufferPositiveExt2(
-        port: i32,
-        pad_data: *mut SceCtrlData,
-        count: i32
-    ) -> i32;
+    pub fn sceCtrlPeekBufferPositive(port: i32, pad_data: *mut SceCtrlData, count: i32) -> i32;
 
-    /// Get the controller state information (polling, negative logic).
-    /// 
-    /// * `port` - use 0.
-    /// * `*pad_data` (out) - see ::SceCtrlData.
-    /// * `count` - Buffers count. Up to 64 buffers can be requested.
-    /// 
-    /// Returns buffers count, between 1 and 'count'. < 0 on error.
-    pub fn sceCtrlPeekBufferNegative(
-        port: i32,
-        pad_data: *mut SceCtrlData,
-        count: i32
-    ) -> i32;
-
-    /// Get the controller state information (blocking, positive logic).
-    /// 
-    /// * `port` - use 0.
-    /// * `*pad_data` (out) - see ::SceCtrlData.
-    /// * `count` - Buffers count. Up to 64 buffers can be requested.
-    /// 
-    /// Returns buffers count, between 1 and 'count'. < 0 on error.
-    pub fn sceCtrlReadBufferPositive(
-        port: i32,
-        pad_data: *mut SceCtrlData,
-        count: i32
-    ) -> i32;
-
-    /// Get the controller extended state information (blocking, positive logic).
+    /// Get the controller state information (polling, positive logic)
     ///
-    /// This function will bind L/R trigger value to L1/R1 instead of LTRIGGER/RTRIGGER
-    /// 
+    /// This function will bind L/R trigger value to L1/R1 instead of LTRIGGER/RTRIGGER.
+    ///
     /// * `port` - use 0.
-    /// * `*pad_data` (out) - see ::SceCtrlData.
+    /// * `*pad_data` (out) - see [SceCtrlData].
     /// * `count` - Buffers count. Up to 64 buffers can be requested.
-    /// 
+    ///
     /// Returns buffers count, between 1 and 'count'. < 0 on error.
-    pub fn sceCtrlReadBufferPositiveExt2(
-        port: i32,
-        pad_data: *mut SceCtrlData,
-        count: i32
-    ) -> i32;
+    pub fn sceCtrlPeekBufferPositiveExt2(port: i32, pad_data: *mut SceCtrlData, count: i32) -> i32;
 
-    /// Get the controller state information (blocking, negative logic).
-    /// 
+    /// Get the controller state information (polling, negative logic)
+    ///
     /// * `port` - use 0.
-    /// * `*pad_data` (out) - see ::SceCtrlData.
+    /// * `*pad_data` (out) - see [SceCtrlData].
     /// * `count` - Buffers count. Up to 64 buffers can be requested.
-    /// 
+    ///
     /// Returns buffers count, between 1 and 'count'. < 0 on error.
-    pub fn sceCtrlReadBufferNegative(
-        port: i32,
-        pad_data: *mut SceCtrlData,
-        count: i32
-    ) -> i32;
+    pub fn sceCtrlPeekBufferNegative(port: i32, pad_data: *mut SceCtrlData, count: i32) -> i32;
 
-    /// Set rules for button rapid fire.
-    /// 
+    /// Get the controller state information (blocking, positive logic)
+    ///
     /// * `port` - use 0.
-    /// * `idx` - rule index between 0-15
-    /// * `pRule` - structure ::SceCtrlRapidFireRule.
-    /// 
+    /// * `*pad_data` (out) - see [SceCtrlData].
+    /// * `count` - Buffers count. Up to 64 buffers can be requested.
+    ///
+    /// Returns buffers count, between 1 and 'count'. < 0 on error.
+    pub fn sceCtrlReadBufferPositive(port: i32, pad_data: *mut SceCtrlData, count: i32) -> i32;
+
+    /// Get the controller extended state information (blocking, positive logic)
+    ///
+    /// This function will bind L/R trigger value to L1/R1 instead of LTRIGGER/RTRIGGER.
+    ///
+    /// * `port` - use 0.
+    /// * `*pad_data` (out) - see [SceCtrlData].
+    /// * `count` - Buffers count. Up to 64 buffers can be requested.
+    ///
+    /// Returns buffers count, between 1 and 'count'. < 0 on error.
+    pub fn sceCtrlReadBufferPositiveExt2(port: i32, pad_data: *mut SceCtrlData, count: i32) -> i32;
+
+    /// Get the controller state information (blocking, negative logic)
+    ///
+    /// * `port` - use 0.
+    /// * `*pad_data` (out) - see [SceCtrlData].
+    /// * `count` - Buffers count. Up to 64 buffers can be requested.
+    ///
+    /// Returns buffers count, between 1 and 'count'. < 0 on error.
+    pub fn sceCtrlReadBufferNegative(port: i32, pad_data: *mut SceCtrlData, count: i32) -> i32;
+
+    /// Set rules for button rapid fire
+    ///
+    /// * `port` - use 0.
+    /// * `idx` - rule index between 0-15.
+    /// * `pRule` - structure [SceCtrlRapidFireRule].
+    ///
     /// Returns 0 on success, < 0 on error.
-    pub fn sceCtrlSetRapidFire(
-        port: i32,
-        idx: i32,
-        pRule: *const SceCtrlRapidFireRule
-    );
+    pub fn sceCtrlSetRapidFire(port: i32, idx: i32, pRule: *const SceCtrlRapidFireRule);
 
-    /// Clear rules for button rapid fire.
-    /// 
+    /// Clear rules for button rapid fire
+    ///
     /// * `port` - use 0.
-    /// * `idx` - rule index between 0-15
-    /// 
+    /// * `idx` - rule index between 0-15.
+    ///
     /// Returns 0 on success, < 0 on error.
-    pub fn sceCtrlClearRapidFire(
-        port: i32,
-        idx: i32
-    ) -> i32;
+    pub fn sceCtrlClearRapidFire(port: i32, idx: i32) -> i32;
 
-    /// Control the actuator (vibrate) on paired controllers.
-    /// 
+    /// Control the actuator (vibrate) on paired controllers
+    ///
     /// * `port` - use 1 for the first paired controller, etc.
-    /// * `state` - see ::SceCtrlActuator
-    /// 
+    /// * `state` - see [SceCtrlActuator].
+    ///
     /// Returns 0 on success, < 0 on error.
-    pub fn sceCtrlSetActuator(
-        port: i32,
-        pState: *const SceCtrlActuator
-    ) -> i32;
+    pub fn sceCtrlSetActuator(port: i32, pState: *const SceCtrlActuator) -> i32;
 
-    /// Control the light bar on paired controllers.
-    /// 
+    /// Control the light bar on paired controllers
+    ///
     /// * `port` - use 1 for the first paired controller, etc.
-    /// * `r` - red intensity
-    /// * `g` - green intensity
-    /// * `b` - blue intensity
-    /// 
+    /// * `r` - red intensity.
+    /// * `g` - green intensity.
+    /// * `b` - blue intensity.
+    ///
     /// Returns 0 on success, < 0 on error.
-    pub fn sceCtrlSetLightBar(
-        port: i32,
-        r: SceUInt8,
-        g: SceUInt8,
-        b: SceUInt8
-    ) -> i32;
+    pub fn sceCtrlSetLightBar(port: i32, r: SceUInt8, g: SceUInt8, b: SceUInt8) -> i32;
 
     /// Get controller port information.
-    /// 
-    /// * `info` (out) - see ::SceCtrlPortInfo
-    /// 
+    ///
+    /// * `info` (out) - see [SceCtrlPortInfo].
+    ///
     /// Returns 0 on success, < 0 on error.
-    pub fn sceCtrlGetControllerPortInfo(
-        info: *mut SceCtrlPortInfo
-    ) -> i32;
+    pub fn sceCtrlGetControllerPortInfo(info: *mut SceCtrlPortInfo) -> i32;
 
-    /// Get controller battery information.
-    /// 
+    /// Get controller battery information
+    ///
     /// * `port` - use 1 for the first paired controller, etc.
-    /// * `batt` (out) - battery level, between 0-5, 0xEE charging, 0xEF charged
-    /// 
-    /// Returns 0 on success, < 0 on error.
-    pub fn sceCtrlGetBatteryInfo(
-        port: i32,
-        batt: *mut SceUInt8
-    ) -> i32;
-
-    /// Sets intercept.
-    /// 
-    /// If true, allows the current thread to intercept controls. The use case
-    /// might be, for example, a game plugin that wishes to capture input without
-    /// having the input sent to the game thread.
-    /// 
-    /// * `intercept` - Boolean value
-    /// 
-    /// Returns 0 on success, < 0 on error.
-    pub fn sceCtrlSetButtonIntercept(
-        intercept: i32
-    ) -> i32;
-
-    /// Gets intercept.
-    /// 
-    /// * `intercept` (out) - Boolean value
+    /// * `batt` (out) - battery level, between 0-5, 0xEE charging, 0xEF charged.
     ///
     /// Returns 0 on success, < 0 on error.
-    pub fn sceCtrlGetButtonIntercept(
-        intercept: *mut i32
-    ) -> i32;
+    pub fn sceCtrlGetBatteryInfo(port: i32, batt: *mut SceUInt8) -> i32;
 
-    /// Check if multi controller is supported.
+    /// Sets intercept
     ///
-    /// Returns 1 if yes, 0 if no
+    /// If true, allows the current thread to intercept controls.
+    /// The use case might be, for example, a game plugin that wishes to
+    /// capture input without having the input sent to the game thread.
+    ///
+    /// * `intercept` - Boolean value.
+    ///
+    /// Returns 0 on success, < 0 on error.
+    pub fn sceCtrlSetButtonIntercept(intercept: i32) -> i32;
+
+    /// Gets intercept
+    ///
+    /// * `intercept` (out) - Boolean value.
+    ///
+    /// Returns 0 on success, < 0 on error.
+    pub fn sceCtrlGetButtonIntercept(intercept: *mut i32) -> i32;
+
+    /// Check if multi controller is supported
+    ///
+    /// Returns 1 if yes, 0 if no.
     pub fn sceCtrlIsMultiControllerSupported() -> i32;
 }

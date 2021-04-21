@@ -34,22 +34,22 @@ pub enum SceDisplaySetBufSync {
     SCE_DISPLAY_SETBUF_NEXTFRAME = 1,
 }
 
-/// Structure used with ::sceDisplaySetFrameBuf to set/update
+/// Structure used with [sceDisplaySetFrameBuf] to set/update
 /// framebuffer
 /// 
 /// Original screen resolution is 960x544, but the following resolutions can also
 /// be supplied as width and height : 480x272, 640x368, 720x408
 /// 
-/// > Note: This structure is returned by ::sceDisplayGetFrameBuf
+/// > Note: This structure is returned by [sceDisplayGetFrameBuf]
 #[repr(C)]
 pub struct SceDisplayFrameBuf {
-    /// sizeof(SceDisplayFrameBuf)
+    /// sizeof([SceDisplayFrameBuf])
     pub size: SceSize,
     /// Pointer to framebuffer
     pub base: *mut crate::void,
     /// Pitch pixels
     pub pitch: u32,
-    /// Pixel format (one of ::SceDisplayPixelFormat)
+    /// Pixel format (one of [SceDisplayPixelFormat])
     pub pixelformat: u32,
     /// Framebuffer width
     pub width: u32,
@@ -64,9 +64,9 @@ pub struct SceDisplayFrameBuf {
 extern "C" {
     /// Set/Update framebuffer parameters
     ///
-    /// * `pParam` (out) - Pointer to a ::SceDisplayFrameBuf
+    /// * `pParam` (out) - Pointer to a [SceDisplayFrameBuf]
     /// structure
-    /// * `sync` - One of ::SceDisplaySetBufSync
+    /// * `sync` - One of [SceDisplaySetBufSync]
     /// 
     /// Returns 0 on success, < 0 on error
     ///
@@ -78,9 +78,9 @@ extern "C" {
 
     /// Get current framebuffer parameters
     ///     
-    /// * `pParam` (out) - Pointer to a ::SceDisplayFrameBuf
+    /// * `pParam` (out) - Pointer to a [SceDisplayFrameBuf]
     /// structure which will receive framebuffer parameters
-    /// * `sync` - One of ::SceDisplaySetBufSync
+    /// * `sync` - One of [SceDisplaySetBufSync]
     /// 
     /// Returns 0 on success, < 0 on error
     pub fn sceDisplayGetFrameBuf(
