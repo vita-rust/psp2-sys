@@ -1,3 +1,5 @@
+//! SCE Types
+
 pub type SceChar8 = i8;
 pub type SceUChar8 = u8;
 
@@ -6,6 +8,9 @@ pub type SceUInt8 = u8;
 
 pub type SceShort16 = i16;
 pub type SceUShort16 = u16;
+
+pub type SceInt16 = i16;
+pub type SceUInt16 = u16;
 
 pub type SceInt32 = i32;
 pub type SceUInt32 = u32;
@@ -90,6 +95,7 @@ pub struct SceIVector4 {
     w: SceInt,
 }
 
+/*
 #[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceUVector4 {
@@ -98,6 +104,8 @@ pub struct SceUVector4 {
     z: SceUInt,
     w: SceUInt,
 }
+*/
+// Missing from types.h !
 
 #[derive(Copy, Clone, Debug)]
 #[repr(C)]
@@ -147,6 +155,7 @@ pub struct SceIMatrix4 {
     w: SceIVector4,
 }
 
+/*
 #[derive(Copy, Clone, Debug)]
 #[repr(C)]
 pub struct SceUMatrix4 {
@@ -155,6 +164,8 @@ pub struct SceUMatrix4 {
     z: SceUVector4,
     w: SceUVector4,
 }
+*/
+// Missing from types.h !
 
 #[derive(Copy, Clone, Debug)]
 #[repr(C)]
@@ -192,6 +203,7 @@ pub struct SceFPlane {
     d: SceFloat,
 }
 
+/*
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union SceUnion32 {
@@ -204,7 +216,10 @@ pub union SceUnion32 {
     f: f32,
     p: *mut crate::void,
 }
+*/
+// Missing from types.h !
 
+/*
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union SceUnion64 {
@@ -220,7 +235,10 @@ pub union SceUnion64 {
     fv: SceFVector2,
     iv: SceIVector2,
 }
+*/
+// Missing from types.h !
 
+/*
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union SceUnion128 {
@@ -239,6 +257,8 @@ pub union SceUnion128 {
     fc: SceFColor,
     iv: SceIVector4,
 }
+*/
+// Missing from types.h !
 
 #[derive(Copy, Clone, Debug)]
 #[repr(C)]
@@ -252,11 +272,20 @@ pub struct SceDateTime {
     microsecond: u32,
 }
 
+/// Mode for I/O funuctions
 pub type SceMode = i32;
+/// Offset type
 pub type SceOff = SceInt64;
 
+/// UIDs are used to describe many different kernel objects
 pub type SceUID = i32;
 
+/// Process ID
 pub type ScePID = i32;
+/// Current running process ID is always 0
+pub const SCE_KERNEL_PROCESS_ID_SELF: usize = 0;
 
+/// Names are used to describe object names
 pub type SceName = *mut u8;
+/// Maximum length for kernel object names
+pub const SCE_UID_NAMELEN: usize = 31;

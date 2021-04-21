@@ -1,0 +1,7 @@
+{
+    "recommendations": [
+        "rust-lang.rust",
+        "tamasfe.even-better-toml",
+        "rlnt.keep-a-changelog"
+    ]
+}
