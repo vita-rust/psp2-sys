@@ -59,31 +59,37 @@ pub struct SceDisplayFrameBuf {
 extern "C" {
     /// Set/Update framebuffer parameters
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `pParam` (out) - Pointer to a [SceDisplayFrameBuf] structure.
     /// * `sync` - One of [SceDisplaySetBufSync].
     ///
     /// Returns 0 on success, < 0 on error.
     ///
     /// > Note: If NULL is provided as pParam pointer, output is blacked out.
-    pub fn sceDisplaySetFrameBuf(pParam: *const SceDisplayFrameBuf, sync: SceDisplaySetBufSync) -> i32;
+    pub fn sceDisplaySetFrameBuf(
+        pParam: *const SceDisplayFrameBuf,
+        sync: SceDisplaySetBufSync,
+    ) -> i32;
 
     /// Get current framebuffer parameters
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `pParam` (out) - Pointer to a [SceDisplayFrameBuf] structure which
     /// will receive framebuffer parameters.
     /// * `sync` - One of [SceDisplaySetBufSync].
     ///
     /// Returns 0 on success, < 0 on error.
-    pub fn sceDisplayGetFrameBuf(pParam: *mut SceDisplayFrameBuf, sync: SceDisplaySetBufSync) -> i32;
+    pub fn sceDisplayGetFrameBuf(
+        pParam: *mut SceDisplayFrameBuf,
+        sync: SceDisplaySetBufSync,
+    ) -> i32;
 
     /// Primary display index
     pub fn sceDisplayGetPrimaryHead() -> i32;
 
     /// Get current number of fps for the current screen mode
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `pFps` (out) - Pointer to a float variable to store current number of
     /// fps.
     ///
@@ -95,7 +101,7 @@ extern "C" {
 
     /// Get maximum framebuffer resolution
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `width` (out) - Maximum width.
     /// * `height` (out) - Maximum height.
     ///
@@ -107,7 +113,7 @@ extern "C" {
 
     /// Number of vertical blank pulses up to now for a display
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `display` - Display index.
     pub fn sceDisplayGetVcountInternal(display: i32) -> i32;
 
@@ -120,7 +126,7 @@ extern "C" {
     /// Wait for vertical blank start after specified number of vertical
     /// periods
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `vcount` - Number of vertical periods before waiting for vertical
     /// blank start.
     pub fn sceDisplayWaitVblankStartMulti(vcount: u32) -> i32;
@@ -128,7 +134,7 @@ extern "C" {
     /// Wait for vertical blank start with callback after specified number of
     /// vertical periods
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `vcount` - Number of vertical periods before waiting for vertical
     /// blank start.
     pub fn sceDisplayWaitVblankStartMultiCB(vcount: u32) -> i32;
@@ -143,7 +149,7 @@ extern "C" {
     /// Wait for vertical blank start after specified number of vertical
     /// periods since last update of framebuffer
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `vcount` - Number of vertical periods before waiting for vertical
     /// blank start.
     pub fn sceDisplayWaitSetFrameBufMulti(vcount: u32) -> i32;
@@ -151,20 +157,20 @@ extern "C" {
     /// Wait for vertical blank start with callback after specified number of
     /// vertical periods since last update of framebuffer
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `vcount` - Number of vertical periods before waiting for vertical
     /// blank start.
     pub fn sceDisplayWaitSetFrameBufMultiCB(vcount: u32) -> i32;
 
     /// Register callback to be used at each vertical blank start
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `uid` - Callback UID.
     pub fn sceDisplayRegisterVblankStartCallback(uid: SceUID) -> i32;
 
     /// Unregister callback used at each vertical blank start
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `uid` - Callback UID.
     pub fn sceDisplayUnregisterVblankStartCallback(uid: SceUID) -> i32;
 

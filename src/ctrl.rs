@@ -41,10 +41,10 @@ pub enum SceCtrlButtons {
     SCE_CTRL_LEFT = 0x00000080,
     /// Left trigger.
     SCE_CTRL_LTRIGGER = 0x00000100,
-    // SCE_CTRL_L2 : defined in SceCtrlButtons Implementation
+    // SCE_CTRL_L2 : defined in [SceCtrlButtons] Implementation
     /// Right trigger.
     SCE_CTRL_RTRIGGER = 0x00000200,
-    // SCE_CTRL_R2 : defined in SceCtrlButtons Implementation
+    // SCE_CTRL_R2 : Defined in [SceCtrlButtons] Implementation
     /// L1 button.
     SCE_CTRL_L1 = 0x00000400,
     /// R1 button.
@@ -59,7 +59,7 @@ pub enum SceCtrlButtons {
     SCE_CTRL_SQUARE = 0x00008000,
     /// Input not available because intercercepted by another application
     SCE_CTRL_INTERCEPTED = 0x00010000,
-    // SCE_CTRL_PSBUTTON : defined in SceCtrlButtons Implementation
+    // SCE_CTRL_PSBUTTON : Defined in [SceCtrlButtons] Implementation
     /// Headphone plugged in.
     SCE_CTRL_HEADPHONE = 0x00080000,
     /// Volume up button.
@@ -70,7 +70,7 @@ pub enum SceCtrlButtons {
     SCE_CTRL_POWER = 0x40000000,
 }
 
-/// Implementation for SceCtrlButtons : Fixing missing enum variant
+/// Implementation for [SceCtrlButtons] : Fixing missing enum variant
 impl SceCtrlButtons {
     /// L2 button.
     pub const SCE_CTRL_L2: SceCtrlButtons = SceCtrlButtons::SCE_CTRL_LTRIGGER;
@@ -184,7 +184,7 @@ pub struct SceCtrlPortInfo {
 extern "C" {
     /// Set the controller mode
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `mode` - One of [SceCtrlPadInputMode].
     ///
     /// Returns he previous mode, < 0 on error.
@@ -192,7 +192,7 @@ extern "C" {
 
     /// Set the controller extend mode
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `mode` - One of [SceCtrlPadInputMode].
     ///
     /// Returns the previous mode, < 0 on error.
@@ -200,7 +200,7 @@ extern "C" {
 
     /// Get the current controller mode
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `pMode` (out) - Return value, see [SceCtrlPadInputMode].
     ///
     /// Returns the previous mode, < 0 on error.
@@ -208,7 +208,7 @@ extern "C" {
 
     /// Get the controller state information (polling, positive logic)
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `port` - use 0.
     /// * `*pad_data` (out) - see [SceCtrlData].
     /// * `count` - Buffers count. Up to 64 buffers can be requested.
@@ -220,7 +220,7 @@ extern "C" {
     ///
     /// This function will bind L/R trigger value to L1/R1 instead of LTRIGGER/RTRIGGER.
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `port` - use 0.
     /// * `*pad_data` (out) - see [SceCtrlData].
     /// * `count` - Buffers count. Up to 64 buffers can be requested.
@@ -230,7 +230,7 @@ extern "C" {
 
     /// Get the controller state information (polling, negative logic)
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `port` - use 0.
     /// * `*pad_data` (out) - see [SceCtrlData].
     /// * `count` - Buffers count. Up to 64 buffers can be requested.
@@ -240,7 +240,7 @@ extern "C" {
 
     /// Get the controller state information (blocking, positive logic)
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `port` - use 0.
     /// * `*pad_data` (out) - see [SceCtrlData].
     /// * `count` - Buffers count. Up to 64 buffers can be requested.
@@ -252,7 +252,7 @@ extern "C" {
     ///
     /// This function will bind L/R trigger value to L1/R1 instead of LTRIGGER/RTRIGGER.
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `port` - use 0.
     /// * `*pad_data` (out) - see [SceCtrlData].
     /// * `count` - Buffers count. Up to 64 buffers can be requested.
@@ -262,7 +262,7 @@ extern "C" {
 
     /// Get the controller state information (blocking, negative logic)
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `port` - use 0.
     /// * `*pad_data` (out) - see [SceCtrlData].
     /// * `count` - Buffers count. Up to 64 buffers can be requested.
@@ -272,7 +272,7 @@ extern "C" {
 
     /// Set rules for button rapid fire
     ///
-    /// Parameters :
+    /// ### Parameters
     /// * `port` - use 0.
     /// * `idx` - rule index between 0-15.
     /// * `pRule` - structure [SceCtrlRapidFireRule].

@@ -104,7 +104,8 @@ pub struct SceUVector4 {
     z: SceUInt,
     w: SceUInt,
 }
-*/ // Missing from types.h !
+*/
+// Missing from types.h !
 
 #[derive(Copy, Clone, Debug)]
 #[repr(C)]
@@ -163,7 +164,8 @@ pub struct SceUMatrix4 {
     z: SceUVector4,
     w: SceUVector4,
 }
-*/ // Missing from types.h !
+*/
+// Missing from types.h !
 
 #[derive(Copy, Clone, Debug)]
 #[repr(C)]
@@ -214,7 +216,8 @@ pub union SceUnion32 {
     f: f32,
     p: *mut crate::void,
 }
-*/ // Missing from types.h !
+*/
+// Missing from types.h !
 
 /*
 #[derive(Copy, Clone)]
@@ -232,7 +235,8 @@ pub union SceUnion64 {
     fv: SceFVector2,
     iv: SceIVector2,
 }
-*/ // Missing from types.h !
+*/
+// Missing from types.h !
 
 /*
 #[derive(Copy, Clone)]
@@ -253,7 +257,8 @@ pub union SceUnion128 {
     fc: SceFColor,
     iv: SceIVector4,
 }
-*/ // Missing from types.h !
+*/
+// Missing from types.h !
 
 #[derive(Copy, Clone, Debug)]
 #[repr(C)]
