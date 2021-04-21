@@ -1,6 +1,6 @@
 //! SCE System Parameters
 
-/// System param id
+/// System Parameter ID
 #[repr(u32)]
 pub enum SceSystemParamId {
     /// Language settings
@@ -21,7 +21,7 @@ pub enum SceSystemParamId {
     SCE_SYSTEM_PARAM_ID_MAX_VALUE = 0xFFFFFFFF,
 }
 
-/// Language settings
+/// Language Settings
 #[repr(u32)]
 pub enum SceSystemParamLang {
     /// Japanese
