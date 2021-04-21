@@ -184,6 +184,7 @@ pub struct SceCtrlPortInfo {
 extern "C" {
     /// Set the controller mode
     ///
+    /// Parameters :
     /// * `mode` - One of [SceCtrlPadInputMode].
     ///
     /// Returns he previous mode, < 0 on error.
@@ -191,6 +192,7 @@ extern "C" {
 
     /// Set the controller extend mode
     ///
+    /// Parameters :
     /// * `mode` - One of [SceCtrlPadInputMode].
     ///
     /// Returns the previous mode, < 0 on error.
@@ -198,6 +200,7 @@ extern "C" {
 
     /// Get the current controller mode
     ///
+    /// Parameters :
     /// * `pMode` (out) - Return value, see [SceCtrlPadInputMode].
     ///
     /// Returns the previous mode, < 0 on error.
@@ -205,6 +208,7 @@ extern "C" {
 
     /// Get the controller state information (polling, positive logic)
     ///
+    /// Parameters :
     /// * `port` - use 0.
     /// * `*pad_data` (out) - see [SceCtrlData].
     /// * `count` - Buffers count. Up to 64 buffers can be requested.
@@ -216,6 +220,7 @@ extern "C" {
     ///
     /// This function will bind L/R trigger value to L1/R1 instead of LTRIGGER/RTRIGGER.
     ///
+    /// Parameters :
     /// * `port` - use 0.
     /// * `*pad_data` (out) - see [SceCtrlData].
     /// * `count` - Buffers count. Up to 64 buffers can be requested.
@@ -225,6 +230,7 @@ extern "C" {
 
     /// Get the controller state information (polling, negative logic)
     ///
+    /// Parameters :
     /// * `port` - use 0.
     /// * `*pad_data` (out) - see [SceCtrlData].
     /// * `count` - Buffers count. Up to 64 buffers can be requested.
@@ -234,6 +240,7 @@ extern "C" {
 
     /// Get the controller state information (blocking, positive logic)
     ///
+    /// Parameters :
     /// * `port` - use 0.
     /// * `*pad_data` (out) - see [SceCtrlData].
     /// * `count` - Buffers count. Up to 64 buffers can be requested.
@@ -245,6 +252,7 @@ extern "C" {
     ///
     /// This function will bind L/R trigger value to L1/R1 instead of LTRIGGER/RTRIGGER.
     ///
+    /// Parameters :
     /// * `port` - use 0.
     /// * `*pad_data` (out) - see [SceCtrlData].
     /// * `count` - Buffers count. Up to 64 buffers can be requested.
@@ -254,6 +262,7 @@ extern "C" {
 
     /// Get the controller state information (blocking, negative logic)
     ///
+    /// Parameters :
     /// * `port` - use 0.
     /// * `*pad_data` (out) - see [SceCtrlData].
     /// * `count` - Buffers count. Up to 64 buffers can be requested.
@@ -263,6 +272,7 @@ extern "C" {
 
     /// Set rules for button rapid fire
     ///
+    /// Parameters :
     /// * `port` - use 0.
     /// * `idx` - rule index between 0-15.
     /// * `pRule` - structure [SceCtrlRapidFireRule].
@@ -272,6 +282,7 @@ extern "C" {
 
     /// Clear rules for button rapid fire
     ///
+    /// Parameters
     /// * `port` - use 0.
     /// * `idx` - rule index between 0-15.
     ///
@@ -280,6 +291,7 @@ extern "C" {
 
     /// Control the actuator (vibrate) on paired controllers
     ///
+    /// Parameters
     /// * `port` - use 1 for the first paired controller, etc.
     /// * `state` - see [SceCtrlActuator].
     ///
@@ -288,6 +300,7 @@ extern "C" {
 
     /// Control the light bar on paired controllers
     ///
+    /// Parameters
     /// * `port` - use 1 for the first paired controller, etc.
     /// * `r` - red intensity.
     /// * `g` - green intensity.
@@ -298,6 +311,7 @@ extern "C" {
 
     /// Get controller port information.
     ///
+    /// Parameters
     /// * `info` (out) - see [SceCtrlPortInfo].
     ///
     /// Returns 0 on success, < 0 on error.
@@ -305,6 +319,7 @@ extern "C" {
 
     /// Get controller battery information
     ///
+    /// Parameters
     /// * `port` - use 1 for the first paired controller, etc.
     /// * `batt` (out) - battery level, between 0-5, 0xEE charging, 0xEF charged.
     ///
@@ -317,6 +332,7 @@ extern "C" {
     /// The use case might be, for example, a game plugin that wishes to
     /// capture input without having the input sent to the game thread.
     ///
+    /// Parameters
     /// * `intercept` - Boolean value.
     ///
     /// Returns 0 on success, < 0 on error.
@@ -324,6 +340,7 @@ extern "C" {
 
     /// Gets intercept
     ///
+    /// Parameters
     /// * `intercept` (out) - Boolean value.
     ///
     /// Returns 0 on success, < 0 on error.

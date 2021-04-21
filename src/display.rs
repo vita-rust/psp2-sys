@@ -1,7 +1,6 @@
 //! SCE Display
 
-use crate::types::SceSize;
-use crate::types::SceUID;
+use crate::types::{SceSize, SceUID};
 
 /// SCE Display Error Codes
 #[repr(u32)]
@@ -34,13 +33,12 @@ pub enum SceDisplaySetBufSync {
     SCE_DISPLAY_SETBUF_NEXTFRAME = 1,
 }
 
-/// Structure used with [sceDisplaySetFrameBuf] to set/update
-/// framebuffer
+/// Structure used with [sceDisplaySetFrameBuf] to set/update framebuffer
 ///
-/// Original screen resolution is 960x544, but the following resolutions can also
-/// be supplied as width and height : 480x272, 640x368, 720x408
+/// Original screen resolution is 960x544, but the following resolutions can
+/// also be supplied as width and height : 480x272, 640x368, 720x408
 ///
-/// > Note: This structure is returned by [sceDisplayGetFrameBuf]
+/// > Note: This structure is returned by [sceDisplayGetFrameBuf].
 #[repr(C)]
 pub struct SceDisplayFrameBuf {
     /// sizeof([SceDisplayFrameBuf])
@@ -61,50 +59,47 @@ pub struct SceDisplayFrameBuf {
 extern "C" {
     /// Set/Update framebuffer parameters
     ///
-    /// * `pParam` (out) - Pointer to a [SceDisplayFrameBuf]
-    /// structure
-    /// * `sync` - One of [SceDisplaySetBufSync]
+    /// Parameters :
+    /// * `pParam` (out) - Pointer to a [SceDisplayFrameBuf] structure.
+    /// * `sync` - One of [SceDisplaySetBufSync].
     ///
-    /// Returns 0 on success, < 0 on error
+    /// Returns 0 on success, < 0 on error.
     ///
-    /// > Note: If NULL is provided as pParam pointer, output is blacked out
-    pub fn sceDisplaySetFrameBuf(
-        pParam: *const SceDisplayFrameBuf,
-        sync: SceDisplaySetBufSync,
-    ) -> i32;
+    /// > Note: If NULL is provided as pParam pointer, output is blacked out.
+    pub fn sceDisplaySetFrameBuf(pParam: *const SceDisplayFrameBuf, sync: SceDisplaySetBufSync) -> i32;
 
     /// Get current framebuffer parameters
-    ///     
-    /// * `pParam` (out) - Pointer to a [SceDisplayFrameBuf]
-    /// structure which will receive framebuffer parameters
-    /// * `sync` - One of [SceDisplaySetBufSync]
     ///
-    /// Returns 0 on success, < 0 on error
-    pub fn sceDisplayGetFrameBuf(
-        pParam: *mut SceDisplayFrameBuf,
-        sync: SceDisplaySetBufSync,
-    ) -> i32;
+    /// Parameters :
+    /// * `pParam` (out) - Pointer to a [SceDisplayFrameBuf] structure which
+    /// will receive framebuffer parameters.
+    /// * `sync` - One of [SceDisplaySetBufSync].
+    ///
+    /// Returns 0 on success, < 0 on error.
+    pub fn sceDisplayGetFrameBuf(pParam: *mut SceDisplayFrameBuf, sync: SceDisplaySetBufSync) -> i32;
 
     /// Primary display index
     pub fn sceDisplayGetPrimaryHead() -> i32;
 
     /// Get current number of fps for the current screen mode
-    ///    
-    /// * `pFps` (out) - Pointer to a float variable to store current number of
-    /// fps
     ///
-    /// Returns 0 on success, < 0 on error
+    /// Parameters :
+    /// * `pFps` (out) - Pointer to a float variable to store current number of
+    /// fps.
+    ///
+    /// Returns 0 on success, < 0 on error.
     ///
     /// > Note: This function returns a theoretical value, this might not be
-    /// the exact frame rate
+    /// the exact frame rate.
     pub fn sceDisplayGetRefreshRate(pFps: *mut f32) -> i32;
 
     /// Get maximum framebuffer resolution
     ///
-    /// * `width` (out) - Maximum width
-    /// * `height` (out) - Maximum height
+    /// Parameters :
+    /// * `width` (out) - Maximum width.
+    /// * `height` (out) - Maximum height.
     ///
-    /// Returns 0 on success, < 0 on error
+    /// Returns 0 on success, < 0 on error.
     pub fn sceDisplayGetMaximumFrameBufResolution(width: *mut i32, height: *mut i32) -> i32;
 
     /// Number of vertical blank pulses up to now
@@ -112,6 +107,7 @@ extern "C" {
 
     /// Number of vertical blank pulses up to now for a display
     ///
+    /// Parameters :
     /// * `display` - Display index.
     pub fn sceDisplayGetVcountInternal(display: i32) -> i32;
 
@@ -124,15 +120,17 @@ extern "C" {
     /// Wait for vertical blank start after specified number of vertical
     /// periods
     ///
+    /// Parameters :
     /// * `vcount` - Number of vertical periods before waiting for vertical
-    /// blank start
+    /// blank start.
     pub fn sceDisplayWaitVblankStartMulti(vcount: u32) -> i32;
 
     /// Wait for vertical blank start with callback after specified number of
     /// vertical periods
     ///
+    /// Parameters :
     /// * `vcount` - Number of vertical periods before waiting for vertical
-    /// blank start
+    /// blank start.
     pub fn sceDisplayWaitVblankStartMultiCB(vcount: u32) -> i32;
 
     /// Wait for vertical blank start since last update of framebuffer
@@ -145,25 +143,29 @@ extern "C" {
     /// Wait for vertical blank start after specified number of vertical
     /// periods since last update of framebuffer
     ///
+    /// Parameters :
     /// * `vcount` - Number of vertical periods before waiting for vertical
-    /// blank start
+    /// blank start.
     pub fn sceDisplayWaitSetFrameBufMulti(vcount: u32) -> i32;
 
     /// Wait for vertical blank start with callback after specified number of
     /// vertical periods since last update of framebuffer
     ///
+    /// Parameters :
     /// * `vcount` - Number of vertical periods before waiting for vertical
-    /// blank start
+    /// blank start.
     pub fn sceDisplayWaitSetFrameBufMultiCB(vcount: u32) -> i32;
 
     /// Register callback to be used at each vertical blank start
     ///
-    /// * `uid` - Callback UID
+    /// Parameters :
+    /// * `uid` - Callback UID.
     pub fn sceDisplayRegisterVblankStartCallback(uid: SceUID) -> i32;
 
     /// Unregister callback used at each vertical blank start
     ///
-    /// * `uid` - Callback UID
+    /// Parameters :
+    /// * `uid` - Callback UID.
     pub fn sceDisplayUnregisterVblankStartCallback(uid: SceUID) -> i32;
 
 }
