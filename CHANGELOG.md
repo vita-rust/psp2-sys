@@ -10,10 +10,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Complete **userspace** bindings to:
   * the [Control Library]
 - Complete documentation for:
-  * system_param
-  * display
-  * ctrl
-  * kernel::rng
+  * `types`
+  * `system_param`
+  * `display`
+  * `ctrl`
+  * `kernel::rng`
+- Missing types in `types`:
+  * `SceInt16`
+  * `SceUInt16`
+- Missing constant in `types`:
+  * `SCE_KERNEL_PROCESS_ID_SELF`
+  * `SCE_UID_NAMELEN`
+
+### Removed
+- Structures from `types` (missing from types.h):
+  * `SceUVector4`
+  * `SceUMatrix4`
+- Union from `types` (missing from types.h):
+  * `SceUnion32`
+  * `SceUnion64`
+  * `SceUnion128`
 
 ### Fixed
 - Fix `i32` being used instead of `u32` as `psp2_sys::types::SceUInt`
