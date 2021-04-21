@@ -1,4 +1,5 @@
 {
+    "editor.rulers": [80,120],
     "rust-client.channel": "nightly",
     "rust-client.autoStartRls": true,
     "rust-client.disableRustup": false,
