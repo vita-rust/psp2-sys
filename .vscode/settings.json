@@ -1,0 +1,8 @@
+{
+    "rust-client.channel": "nightly",
+    "rust-client.autoStartRls": true,
+    "rust-client.disableRustup": false,
+    "rust-client.engine": "rls",
+    "rust-client.updateOnStartup": true,
+    "rust.rust-analyzer.releaseTag": "nightly"
+}
