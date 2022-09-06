@@ -1,6 +1,6 @@
 {
     "recommendations": [
-        "rust-lang.rust",
+        "rust-lang.rust-analyzer",
         "tamasfe.even-better-toml",
         "rlnt.keep-a-changelog"
     ]
