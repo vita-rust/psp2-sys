@@ -21,6 +21,14 @@ extern "C" {
     pub fn sceClibVsnprintf(s: *mut u8, size: SceSize, format: *const u8, ap: va_list) -> i32;
 
     pub fn sceClibMemset(s: *mut crate::void, c: i32, n: SceSize) -> *mut crate::void;
-    pub fn sceClibMemcpy(dest: *mut crate::void, src: *const crate::void, n: SceSize) -> *mut crate::void;
-    pub fn sceClibMemmove(dest: *mut crate::void, src: *const crate::void, n: SceSize) -> *mut crate::void;
+    pub fn sceClibMemcpy(
+        dest: *mut crate::void,
+        src: *const crate::void,
+        n: SceSize,
+    ) -> *mut crate::void;
+    pub fn sceClibMemmove(
+        dest: *mut crate::void,
+        src: *const crate::void,
+        n: SceSize,
+    ) -> *mut crate::void;
 }
