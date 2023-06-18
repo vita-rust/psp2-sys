@@ -9,6 +9,9 @@
 [![Documentation](https://img.shields.io/badge/docs-latest-4d76ae.svg?maxAge=86400&style=flat-square)](https://docs.rs/psp2-sys)
 [![CargoMake](https://img.shields.io/badge/built%20with-cargo--make-yellow.svg?maxAge=86400&style=flat-square)](https://sagiegurari.github.io/cargo-make)
 
+## Deprecation notice
+
+Deprecated in favor of [vitasdk-sys](https://github.com/vita-rust/vitasdk-sys)
 
 ## Usage
 
